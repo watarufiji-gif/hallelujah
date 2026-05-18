@@ -28,9 +28,9 @@
   --color-sake-gold:      #e8c55a;
 
   /* ─── フォント ─── */
-  --font-sans:   var(--font-noto-sans-jp),   "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-  --font-serif:  var(--font-noto-serif-jp),  "Hiragino Mincho ProN", "Yu Mincho", serif;
-  --font-kiwi:   var(--font-kiwi-maru),      "Hiragino Mincho ProN", serif;
+  --font-sans:   "Noto Sans JP",   "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  --font-serif:  "Noto Serif JP",  "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-kiwi:   "Kiwi Maru",      "Hiragino Mincho ProN", serif;
 }
 
 /* ─── ベース ─── */

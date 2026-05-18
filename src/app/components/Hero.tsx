@@ -8,88 +8,139 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 const rise = (d = 0) => ({
   initial: { opacity: 0, y: 36 },
   animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.75, delay: d, ease: EASE },
+  transition: { duration: 0.8, delay: d, ease: EASE },
 });
+
+/* SVG ノイズフィルター（黒板のザラつき）*/
+const NOISE_SVG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E")`;
 
 export default function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen flex items-center overflow-hidden"
+      className="relative min-h-screen flex items-center overflow-hidden pb-20 md:pb-0"
       style={{
-        background:
-          "linear-gradient(150deg, #1a3a2a 0%, #2d5a3d 45%, #1e3d2a 100%)",
+        backgroundColor: "#1b2e22",
+        backgroundImage: `${NOISE_SVG}, radial-gradient(ellipse 80% 60% at 30% 40%, #22392b 0%, #1b2e22 60%, #141f18 100%)`,
       }}
     >
-      {/* 有機的な背景装飾 */}
-      <div className="absolute inset-0 pointer-events-none" aria-hidden>
-        <div className="absolute -top-24 -left-24 w-96 h-96 bg-[#3d7a52]/20 blob-a blur-3xl" />
-        <div className="absolute bottom-0 right-0 w-80 h-80 bg-[#e8720c]/12 blob-b blur-3xl" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-[#2d5a3d]/30 blob-c blur-2xl" />
-        {/* 浮遊する野菜 */}
-        <span className="absolute top-20  right-[12%]  text-5xl opacity-15 rotate-12 select-none">🥬</span>
-        <span className="absolute bottom-32 left-[8%]  text-4xl opacity-12 -rotate-8 select-none">🍅</span>
-        <span className="absolute top-2/3 right-[6%]  text-3xl opacity-10  rotate-6 select-none">🌽</span>
-        <span className="absolute top-1/4 left-[14%]  text-3xl opacity-12 -rotate-12 select-none">🥕</span>
+      {/* チョーク書き風ライン装飾 */}
+      <svg
+        className="absolute inset-0 w-full h-full pointer-events-none opacity-[0.04]"
+        aria-hidden
+      >
+        <line x1="0" y1="38%" x2="100%" y2="38%" stroke="#e8e8d8" strokeWidth="1" strokeDasharray="6 14" />
+        <line x1="0" y1="62%" x2="100%" y2="62%" stroke="#e8e8d8" strokeWidth="1" strokeDasharray="4 18" />
+        <line x1="22%" y1="0" x2="22%" y2="100%" stroke="#e8e8d8" strokeWidth="1" strokeDasharray="5 20" />
+      </svg>
+
+      {/* 野菜フローティング（チョーク落書き風・薄め） */}
+      <div className="absolute inset-0 pointer-events-none select-none" aria-hidden>
+        <span className="absolute top-24  right-[13%] text-5xl opacity-[0.10] rotate-12">🥬</span>
+        <span className="absolute bottom-28 left-[9%]  text-4xl opacity-[0.08] -rotate-8">🍅</span>
+        <span className="absolute top-2/3  right-[7%]  text-3xl opacity-[0.07]  rotate-5">🌽</span>
+        <span className="absolute top-1/4  left-[16%] text-3xl opacity-[0.09] -rotate-10">🥕</span>
+        <span className="absolute top-1/2  left-[5%]  text-2xl opacity-[0.06]  rotate-20">🌾</span>
       </div>
 
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full pt-20 pb-12 md:py-0">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-16 items-center min-h-[calc(100vh-5rem)]">
 
           {/* ─── 左：コピー ─── */}
-          <div className="space-y-6">
+          <div className="space-y-7">
+
+            {/* バッジ */}
             <motion.span
               {...rise(0.1)}
-              className="inline-flex items-center gap-2 bg-[#e8720c]/20 border border-[#e8720c]/35 text-[#f59339] text-xs font-bold px-4 py-1.5 rounded-full backdrop-blur-sm"
+              className="inline-flex items-center gap-2 text-xs font-bold px-4 py-1.5 rounded-full"
+              style={{
+                background: "rgba(232,200,140,0.14)",
+                border: "1px solid rgba(232,200,140,0.32)",
+                color: "#e8c88c",
+              }}
             >
-              🌿 農家直営・長後駅徒歩3分・チャージ0円
+              🌿 農家直営・長後駅 東口 徒歩3分・チャージ0円
             </motion.span>
 
-            <motion.h1 {...rise(0.2)} className="text-white leading-[1.25]">
-              <span className="block font-kiwi text-base sm:text-lg text-[#a8d5b0] mb-1 tracking-wide">
+            {/* ストア名（Kiwi Maru / 黒板に書いたような）*/}
+            <motion.div {...rise(0.18)}>
+              <span
+                className="block font-kiwi text-sm tracking-[0.4em] mb-1"
+                style={{ color: "rgba(168,213,176,0.7)" }}
+              >
+                農村かふぇ
+              </span>
+              <span
+                className="block font-kiwi text-5xl sm:text-6xl md:text-5xl lg:text-6xl leading-none"
+                style={{
+                  color: "#f0ece0",
+                  textShadow: "0 0 40px rgba(240,236,224,0.12), 2px 2px 0 rgba(0,0,0,0.4)",
+                }}
+              >
+                ハレルヤ
+              </span>
+            </motion.div>
+
+            {/* キャッチコピー（Noto Serif JP / 明朝体の品格）*/}
+            <motion.h1 {...rise(0.28)} className="leading-snug">
+              <span
+                className="block font-serif text-2xl sm:text-3xl font-bold"
+                style={{ color: "#e8e8d8" }}
+              >
                 農家直営だから、美味い。
               </span>
-              <span className="block font-serif text-[clamp(2rem,5.5vw,3.4rem)] font-bold">
-                新鮮野菜の
-                <br className="md:hidden" />
-                <span className="text-[#f59339]">力強さ</span>と、
-              </span>
-              <span className="block font-serif text-[clamp(2rem,5.5vw,3.4rem)] font-bold">
-                驚きのコスパ。
+              <span
+                className="block font-serif text-xl sm:text-2xl mt-1"
+                style={{ color: "rgba(232,232,216,0.65)" }}
+              >
+                新鮮野菜の力強さと、驚きのコスパ。
               </span>
             </motion.h1>
 
-            <motion.p {...rise(0.32)} className="text-white/65 text-base sm:text-lg leading-relaxed max-w-md">
-              毎朝仕入れる地物野菜をふんだんに。ラーメンから馬刺し、日本酒まで。
-              いつ誰と来ても大満足できる<strong className="text-white/85">「まちの台所」</strong>。
+            {/* サブコピー */}
+            <motion.p
+              {...rise(0.37)}
+              className="text-sm sm:text-base leading-relaxed max-w-md"
+              style={{ color: "rgba(232,232,216,0.55)" }}
+            >
+              毎朝仕入れる地物野菜をふんだんに。ラーメンから馬刺し、日本酒まで。いつ誰と来ても大満足できる
+              <em className="not-italic font-serif" style={{ color: "rgba(232,232,216,0.8)" }}>「まちの台所」</em>。
             </motion.p>
 
-            <motion.div {...rise(0.44)} className="flex flex-wrap gap-4">
+            {/* CTA */}
+            <motion.div {...rise(0.46)} className="flex flex-wrap gap-4">
               <a
                 href="https://www.hotpepper.jp/strJ001342063/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-sun"
               >
-                <CalendarCheck size={17} />
+                <CalendarCheck size={16} />
                 ネット予約
               </a>
-              <Link href="/menu" className="btn-ghost !border-white/40 !text-white hover:!bg-white/10 hover:!text-white">
+              <Link
+                href="/menu"
+                className="btn-ghost"
+                style={{ borderColor: "rgba(232,232,216,0.35)", color: "#e8e8d8" }}
+              >
                 メニューを見る
-                <ArrowRight size={15} />
+                <ArrowRight size={14} />
               </Link>
             </motion.div>
 
-            {/* クイック数字 */}
-            <motion.div {...rise(0.54)} className="flex gap-6 pt-2">
+            {/* クイック数字（チョーク書き風）*/}
+            <motion.div
+              {...rise(0.55)}
+              className="flex gap-6 pt-1"
+            >
               {[
                 { val: "550円〜", sub: "ランチ" },
                 { val: "280円",   sub: "大ジョッキサワー" },
                 { val: "無料",    sub: "駐車場" },
               ].map(s => (
                 <div key={s.sub}>
-                  <div className="font-kiwi text-2xl text-[#f59339]">{s.val}</div>
-                  <div className="text-white/40 text-xs mt-0.5">{s.sub}</div>
+                  <div className="font-kiwi text-2xl" style={{ color: "#d4a96a" }}>{s.val}</div>
+                  <div className="text-xs mt-0.5" style={{ color: "rgba(232,232,216,0.35)" }}>{s.sub}</div>
                 </div>
               ))}
             </motion.div>
@@ -97,30 +148,45 @@ export default function Hero() {
 
           {/* ─── 右：ビジュアル ─── */}
           <motion.div
-            initial={{ opacity: 0, x: 50, rotate: 1.5 }}
+            initial={{ opacity: 0, x: 44, rotate: 1.8 }}
             animate={{ opacity: 1, x: 0, rotate: 1 }}
-            transition={{ duration: 0.9, delay: 0.3, ease: EASE }}
+            transition={{ duration: 1.0, delay: 0.3, ease: EASE }}
             className="hidden md:block relative"
           >
-            {/* メイン枠（写真プレースホルダー） */}
-            <div className="aspect-[4/3] rounded-3xl overflow-hidden border border-white/10 shadow-2xl flex items-center justify-center bg-gradient-to-br from-[#2d5a3d]/60 to-[#1a3a2a]/80 rotate-1">
-              <div className="text-center text-white/50">
-                <div className="text-8xl mb-3">🍜</div>
-                <p className="text-sm">メインビジュアル写真</p>
-                <p className="text-xs opacity-50 mt-1">（差し替え予定）</p>
+            {/* メイン枠（黒板の額縁風）*/}
+            <div
+              className="aspect-[4/3] rounded-2xl flex items-center justify-center shadow-2xl rotate-1 relative overflow-hidden"
+              style={{
+                background: "#22392b",
+                border: "3px solid rgba(232,200,140,0.2)",
+                boxShadow: "0 20px 60px rgba(0,0,0,0.5), inset 0 0 60px rgba(0,0,0,0.3)",
+              }}
+            >
+              <div className="text-center" style={{ color: "rgba(232,232,216,0.3)" }}>
+                <div className="text-7xl mb-3 opacity-50">🍜</div>
+                <p className="font-kiwi text-sm">メインビジュアル写真</p>
+                <p className="text-xs mt-1 opacity-50">（写真差し替え予定）</p>
               </div>
             </div>
-            {/* フローティング馬刺しカード */}
-            <div className="absolute -bottom-6 -left-8 bg-[#FAF6F0] rounded-2xl shadow-xl p-4 -rotate-2">
-              <div className="text-2xl mb-1">🐴</div>
-              <div className="text-xs font-bold text-[#1e1a14]">熊本直送 馬刺し</div>
+
+            {/* 馬刺しメモ風カード */}
+            <div
+              className="absolute -bottom-5 -left-7 rounded-xl shadow-xl p-4 -rotate-2"
+              style={{ background: "#FAF6F0", border: "1px solid #EDE0CC" }}
+            >
+              <div className="text-xl mb-0.5">🐴</div>
+              <div className="font-kiwi text-xs font-medium text-[#2c1810]">熊本直送 馬刺し</div>
               <div className="text-[#e8720c] text-xs font-bold mt-0.5">880円〜</div>
             </div>
-            {/* フローティング日本酒カード */}
-            <div className="absolute -top-5 -right-4 bg-[#e8720c] rounded-2xl shadow-xl p-4 rotate-2">
-              <div className="text-2xl mb-1">🍶</div>
-              <div className="text-xs font-bold text-white">日本酒飲み放題</div>
-              <div className="text-white/80 text-xs font-bold mt-0.5">解禁！1,980円〜</div>
+
+            {/* 日本酒メモ風カード */}
+            <div
+              className="absolute -top-4 -right-3 rounded-xl shadow-xl p-4 rotate-2"
+              style={{ background: "#22392b", border: "1px solid rgba(212,169,106,0.4)" }}
+            >
+              <div className="text-xl mb-0.5">🍶</div>
+              <div className="font-kiwi text-xs" style={{ color: "#e8c88c" }}>日本酒 飲み放題</div>
+              <div className="text-xs font-bold mt-0.5" style={{ color: "rgba(232,200,140,0.7)" }}>解禁！1,980円〜</div>
             </div>
           </motion.div>
 
@@ -129,11 +195,12 @@ export default function Hero() {
 
       {/* スクロール誘導 */}
       <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/35 text-center hidden md:block"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-center hidden md:block"
         animate={{ y: [0, 7, 0] }}
-        transition={{ repeat: Infinity, duration: 2.2 }}
+        transition={{ repeat: Infinity, duration: 2.4 }}
+        style={{ color: "rgba(232,232,216,0.25)" }}
       >
-        <div className="text-[10px] tracking-[0.3em] uppercase mb-1">Scroll</div>
+        <div className="font-kiwi text-[10px] tracking-[0.35em] mb-1">scroll</div>
         <div className="text-sm">↓</div>
       </motion.div>
     </section>

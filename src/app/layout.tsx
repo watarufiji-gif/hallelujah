@@ -1,29 +1,7 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP, Kiwi_Maru } from "next/font/google";
 import "./globals.css";
-import Header   from "./components/Header";
+import Header    from "./components/Header";
 import MobileNav from "./components/MobileNav";
-
-const notoSansJP = Noto_Sans_JP({
-  variable: "--font-noto-sans-jp",
-  subsets: ["latin"],
-  weight: ["400", "500", "700", "900"],
-  display: "swap",
-});
-
-const notoSerifJP = Noto_Serif_JP({
-  variable: "--font-noto-serif-jp",
-  subsets: ["latin"],
-  weight: ["400", "700"],
-  display: "swap",
-});
-
-const kiwiMaru = Kiwi_Maru({
-  variable: "--font-kiwi-maru",
-  subsets: ["latin"],
-  weight: ["400", "500"],
-  display: "swap",
-});
 
 export const metadata: Metadata = {
   title: "農村かふぇ ハレルヤ｜長後駅3分・農家直営・日本酒飲み放題",
@@ -40,7 +18,15 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="ja" className={`${notoSansJP.variable} ${notoSerifJP.variable} ${kiwiMaru.variable}`}>
+    <html lang="ja">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Kiwi+Maru:wght@400;500&family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Serif+JP:wght@400;700&display=swap"
+          rel="stylesheet"
+        />
+      </head>
       <body className="min-h-screen bg-paper antialiased">
         <Header />
         <main>{children}</main>

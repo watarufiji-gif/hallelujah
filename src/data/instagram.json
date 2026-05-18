@@ -1,0 +1,62 @@
+[
+  {
+    "id": "ig1",
+    "emoji": "🍱",
+    "bgColor": "#fef3c7",
+    "label": "今日のお弁当",
+    "caption": "魚介醤油出汁らーめん弁当\n本日もあります！\n馬刺しも入荷してます🐴",
+    "date": "5/17",
+    "rotate": 1.8,
+    "url": "https://www.instagram.com/chogo_hareruya/"
+  },
+  {
+    "id": "ig2",
+    "emoji": "📅",
+    "bgColor": "#fce7f3",
+    "label": "営業カレンダー",
+    "caption": "今週のお休みは\n水曜日のみです！\n土日は通し営業🌿",
+    "date": "5/15",
+    "rotate": -1.5,
+    "url": "https://www.instagram.com/chogo_hareruya/"
+  },
+  {
+    "id": "ig3",
+    "emoji": "🐴",
+    "bgColor": "#fef2e4",
+    "label": "馬刺し入荷",
+    "caption": "熊本から届きました！\nたてがみ・赤身・レバー\n全9種類揃ってます🍶",
+    "date": "5/14",
+    "rotate": 1.2,
+    "url": "https://www.instagram.com/chogo_hareruya/"
+  },
+  {
+    "id": "ig4",
+    "emoji": "🍶",
+    "bgColor": "#f0fdf4",
+    "label": "日本酒飲み放題",
+    "caption": "ついに解禁！\n全国銘酒 飲み放題\n90分 1,980円〜",
+    "date": "5/12",
+    "rotate": -2.0,
+    "url": "https://www.instagram.com/chogo_hareruya/"
+  },
+  {
+    "id": "ig5",
+    "emoji": "🥬",
+    "bgColor": "#ecfdf5",
+    "label": "直売野菜",
+    "caption": "新玉ねぎ・スナップえんどう\n入荷しました！\n店頭にてどうぞ🌾",
+    "date": "5/10",
+    "rotate": 1.5,
+    "url": "https://www.instagram.com/chogo_hareruya/"
+  },
+  {
+    "id": "ig6",
+    "emoji": "🍺",
+    "bgColor": "#fff7ed",
+    "label": "サワー280円",
+    "caption": "大ジョッキサワー\nなみなみ注いで280円！\nチャージ・席料ゼロ🙌",
+    "date": "5/8",
+    "rotate": -1.2,
+    "url": "https://www.instagram.com/chogo_hareruya/"
+  }
+]
