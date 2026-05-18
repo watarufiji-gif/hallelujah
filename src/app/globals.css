@@ -90,34 +90,35 @@ body {
 
 /* ─── ボタン ─── */
 .btn-sun {
-  display: inline-flex; align-items: center; gap: 0.45rem;
-  background: linear-gradient(135deg, #e8720c, #f59339);
-  color: #fff; font-weight: 800; font-size: 0.9rem;
-  padding: 0.7rem 1.6rem; border-radius: 9999px;
-  box-shadow: 0 4px 18px rgba(232,114,12,0.35);
-  transition: all 0.22s ease; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: #e8720c;
+  color: #fff; font-weight: 700; font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  padding: 0.78rem 2rem;
+  transition: background 0.2s ease; text-decoration: none;
 }
-.btn-sun:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(232,114,12,0.45); }
+.btn-sun:hover { background: #cf640a; }
 
 .btn-forest {
-  display: inline-flex; align-items: center; gap: 0.45rem;
-  background: var(--color-forest-mid);
-  color: #fff; font-weight: 700; font-size: 0.9rem;
-  padding: 0.7rem 1.6rem; border-radius: 9999px;
-  box-shadow: 0 4px 16px rgba(45,90,61,0.3);
-  transition: all 0.22s ease; text-decoration: none;
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: #2d5a3d;
+  color: #fff; font-weight: 700; font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  padding: 0.78rem 2rem;
+  transition: background 0.2s ease; text-decoration: none;
 }
-.btn-forest:hover { transform: translateY(-2px); background: var(--color-forest-bright); }
+.btn-forest:hover { background: #1a3a2a; }
 
 .btn-ghost {
-  display: inline-flex; align-items: center; gap: 0.45rem;
+  display: inline-flex; align-items: center; gap: 0.5rem;
   background: transparent;
-  color: var(--color-forest-mid); font-weight: 700; font-size: 0.9rem;
-  padding: 0.65rem 1.55rem; border-radius: 9999px;
-  border: 2px solid var(--color-forest-mid);
-  transition: all 0.22s ease; text-decoration: none;
+  color: #2d5a3d; font-weight: 700; font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  padding: 0.76rem 1.98rem;
+  border: 1px solid #2d5a3d;
+  transition: all 0.2s ease; text-decoration: none;
 }
-.btn-ghost:hover { background: var(--color-forest-mid); color: #fff; }
+.btn-ghost:hover { background: #2d5a3d; color: #fff; }
 
 /* ─── 手書き風価格タグ ─── */
 .price-stamp {

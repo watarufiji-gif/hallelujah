@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { PenLine, Leaf } from "lucide-react";
 import boardData from "@/data/board.json";
 
 export default function ChalkboardSection() {
@@ -23,10 +24,10 @@ export default function ChalkboardSection() {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6 border-b border-white/10 pb-5">
               <div className="flex items-center gap-3">
                 {/* 黒板消し風アイコン */}
-                <span className="text-3xl select-none">🪣</span>
+                <PenLine size={28} strokeWidth={1} className="text-white/60 shrink-0" />
                 <div>
                   <p className="chalk-text-dim text-[10px] tracking-[0.35em] uppercase font-bold">Today&apos;s Board</p>
-                  <h2 className="font-kiwi text-xl sm:text-2xl chalk-text">今日の黒板 🌾</h2>
+                  <h2 className="font-kiwi text-xl sm:text-2xl chalk-text flex items-center gap-2">今日の黒板 <Leaf size={16} strokeWidth={1} /></h2>
                 </div>
               </div>
               <span className="chalk-text-dim text-xs sm:text-sm font-kiwi self-start sm:self-auto">
@@ -47,7 +48,7 @@ export default function ChalkboardSection() {
                 </p>
                 <footer className="mt-4 flex items-center gap-3">
                   <span className="inline-flex items-center gap-1.5 bg-white/10 text-xs chalk-text-dim px-3 py-1 rounded-full">
-                    🥬 本日の主役野菜：<strong className="chalk-text">{veggie}</strong>
+                    <Leaf size={11} strokeWidth={1} /> 本日の主役野菜：<strong className="chalk-text">{veggie}</strong>
                   </span>
                   <span className="chalk-text-dim text-xs">{author}</span>
                 </footer>

@@ -92,7 +92,7 @@ export default function MenuPage() {
             transition={{ duration: 0.5, delay: 0.25 }}
             className="text-white/50 text-sm mt-4"
           >
-            価格はすべて税込み。仕入れにより変更になる場合があります。
+            仕入れにより変更になる場合があります。
           </motion.p>
         </div>
       </div>
