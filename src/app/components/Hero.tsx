@@ -3,7 +3,8 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight, CalendarCheck, Leaf } from "lucide-react";
-
+import { useLang } from "@/context/LanguageContext";
+import { translations, t } from "@/lib/translations";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 const rise = (d = 0) => ({
@@ -15,6 +16,9 @@ const rise = (d = 0) => ({
 const NOISE_SVG = `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.055'/%3E%3C/svg%3E")`;
 
 export default function Hero() {
+  const { lang } = useLang();
+  const h = translations.hero;
+
   return (
     <section
       id="top"
@@ -48,7 +52,7 @@ export default function Hero() {
             color: "#e8c88c",
           }}
         >
-          <Leaf size={11} strokeWidth={1.5} /> 農家直営・長後駅 東口 徒歩3分
+          <Leaf size={11} strokeWidth={1.5} /> {t(h.badge, lang)}
         </motion.span>
 
         {/* ストア名 */}
@@ -76,13 +80,13 @@ export default function Hero() {
             className="block font-serif text-2xl sm:text-3xl font-bold"
             style={{ color: "#e8e8d8" }}
           >
-            農家直営だから、美味い。
+            {t(h.tagline, lang)}
           </span>
           <span
             className="block font-serif text-lg sm:text-xl mt-2"
             style={{ color: "rgba(232,232,216,0.55)" }}
           >
-            旬の恵みを、産地直送で。
+            {t(h.sub, lang)}
           </span>
         </motion.h1>
 
@@ -92,8 +96,10 @@ export default function Hero() {
           className="text-sm leading-relaxed mb-10 mx-auto max-w-sm"
           style={{ color: "rgba(232,232,216,0.45)" }}
         >
-          毎朝仕入れる地物野菜をふんだんに。ラーメンから馬刺し、日本酒まで。いつ誰と来ても大満足できる
-          <em className="not-italic font-serif" style={{ color: "rgba(232,232,216,0.7)" }}>「まちの台所」</em>。
+          {t(h.body, lang)}
+          <em className="not-italic font-serif" style={{ color: "rgba(232,232,216,0.7)" }}>
+            {t(h.kitchen, lang)}
+          </em>。
         </motion.p>
 
         {/* CTA */}
@@ -105,14 +111,14 @@ export default function Hero() {
             className="btn-sun"
           >
             <CalendarCheck size={15} strokeWidth={1.5} />
-            ネット予約
+            {t(h.reserve, lang)}
           </a>
           <Link
             href="/menu"
             className="btn-ghost"
             style={{ borderColor: "rgba(232,232,216,0.3)", color: "#e8e8d8" }}
           >
-            メニューを見る
+            {t(h.viewMenu, lang)}
             <ArrowRight size={13} />
           </Link>
         </motion.div>

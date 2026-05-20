@@ -2,10 +2,15 @@
 
 import { motion } from "framer-motion";
 import { Camera, ArrowRight } from "lucide-react";
+import { useLang } from "@/context/LanguageContext";
+import { translations, t } from "@/lib/translations";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export default function InstagramSection() {
+  const { lang } = useLang();
+  const ig = translations.instagram;
+
   return (
     <section id="instagram" className="py-20 sm:py-32" style={{ background: "#F0E9DC" }}>
       <div className="max-w-4xl mx-auto px-4 sm:px-8">
@@ -19,11 +24,11 @@ export default function InstagramSection() {
           <div>
             <p className="sec-eyebrow mb-5">Instagram</p>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold mb-5" style={{ color: "#1e1a14" }}>
-              最新情報は<br />Instagramで発信中
+              {t(ig.h2line1, lang)}<br />
+              {t(ig.h2line2, lang)}
             </h2>
             <p className="text-sm leading-relaxed max-w-sm" style={{ color: "#8b7b6a" }}>
-              毎日のお弁当・馬刺し入荷・旬野菜の直売情報など、<br className="hidden sm:block" />
-              リアルタイムの「今日のハレルヤ」をお届けしています。
+              {t(ig.body, lang)}
             </p>
           </div>
 
@@ -41,7 +46,7 @@ export default function InstagramSection() {
             </span>
             <div>
               <div className="text-xs tracking-[0.1em] uppercase font-bold mb-0.5" style={{ color: "#8b7b6a" }}>
-                Follow us
+                {t(ig.followUs, lang)}
               </div>
               <div className="flex items-center gap-1.5 font-bold text-sm group-hover:opacity-70 transition-opacity" style={{ color: "#1e1a14" }}>
                 @chogo_hareruya
@@ -60,7 +65,7 @@ export default function InstagramSection() {
           style={{ borderColor: "rgba(161,120,60,0.18)" }}
         >
           <p className="text-xs" style={{ color: "#b09070", letterSpacing: "0.05em" }}>
-            お弁当・馬刺し入荷・野菜直売など、当日の情報はInstagramで確認いただくのが一番確実です。
+            {t(ig.footnote, lang)}
           </p>
         </motion.div>
       </div>

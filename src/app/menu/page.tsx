@@ -4,6 +4,8 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import menuData from "@/data/menu.json";
 import Footer from "../components/Footer";
+import { useLang } from "@/context/LanguageContext";
+import { translations, t } from "@/lib/translations";
 
 type Tab = "lunch" | "dinner";
 
@@ -12,7 +14,7 @@ const ROTATIONS = [1.1, -0.9, 1.4, -0.7, 0.8, -1.2, 0.6, -1.0, 1.3];
 
 type MenuItem = typeof menuData.lunch[0];
 
-function MenuCard({ item, idx }: { item: MenuItem; idx: number }) {
+function MenuCard({ item, idx, popularLabel }: { item: MenuItem; idx: number; popularLabel: string }) {
   const rot = ROTATIONS[idx % ROTATIONS.length];
   return (
     <motion.article
@@ -22,15 +24,11 @@ function MenuCard({ item, idx }: { item: MenuItem; idx: number }) {
       transition={{ duration: 0.5, delay: 0.05 * idx, ease: EASE }}
       whileHover={{ rotate: 0, y: -7, transition: { duration: 0.2 } }}
       className="relative rounded-3xl overflow-hidden shadow-sm cursor-default"
-      style={{
-        background: "white",
-        transform: `rotate(${rot}deg)`,
-      }}
+      style={{ background: "white", transform: `rotate(${rot}deg)` }}
     >
-      {/* 人気 / タグバッジ */}
       {item.popular && (
         <span className="absolute -top-2 -right-2 z-10 bg-[#e8720c] text-white text-[10px] font-black px-2.5 py-0.5 rounded-full shadow-md">
-          人気
+          {popularLabel}
         </span>
       )}
       {item.tag && !item.popular && (
@@ -39,7 +37,6 @@ function MenuCard({ item, idx }: { item: MenuItem; idx: number }) {
         </span>
       )}
 
-      {/* 写真プレースホルダー */}
       <div
         className="h-36 flex items-center justify-center text-5xl"
         style={{ background: "linear-gradient(135deg,#edf7ef,#f5f0e8)" }}
@@ -62,6 +59,8 @@ function MenuCard({ item, idx }: { item: MenuItem; idx: number }) {
 
 export default function MenuPage() {
   const [tab, setTab] = useState<Tab>("lunch");
+  const { lang } = useLang();
+  const m = translations.menu;
 
   const items = tab === "lunch" ? menuData.lunch : menuData.dinner;
 
@@ -76,7 +75,7 @@ export default function MenuPage() {
             transition={{ duration: 0.5 }}
             className="text-[#a8d5b0] text-[10px] tracking-[0.3em] uppercase font-bold mb-3"
           >
-            Our Menu
+            {t(m.eyebrow, lang)}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 24 }}
@@ -84,7 +83,7 @@ export default function MenuPage() {
             transition={{ duration: 0.65, delay: 0.1, ease: EASE }}
             className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-bold leading-tight"
           >
-            農家直営の<span className="text-[#f59339]">こだわりメニュー</span>
+            {t(m.h1main, lang)}<span className="text-[#f59339]">{t(m.h1span, lang)}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -92,7 +91,7 @@ export default function MenuPage() {
             transition={{ duration: 0.5, delay: 0.25 }}
             className="text-white/50 text-sm mt-4"
           >
-            仕入れにより変更になる場合があります。
+            {t(m.subtitle, lang)}
           </motion.p>
         </div>
       </div>
@@ -102,20 +101,20 @@ export default function MenuPage() {
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
           <div className="flex gap-1 py-2">
             {([
-              { key: "lunch",  label: "☀️ ランチ",   sub: "11:30〜14:30" },
-              { key: "dinner", label: "🌙 ディナー",  sub: "17:00〜22:00" },
-            ] as const).map(t => (
+              { key: "lunch" as Tab,  label: `☀️ ${t(m.lunchTab, lang)}`,  sub: t(m.lunchSub, lang)  },
+              { key: "dinner" as Tab, label: `🌙 ${t(m.dinnerTab, lang)}`, sub: t(m.dinnerSub, lang) },
+            ]).map(tb => (
               <button
-                key={t.key}
-                onClick={() => setTab(t.key)}
+                key={tb.key}
+                onClick={() => setTab(tb.key)}
                 className={`flex-1 sm:flex-none flex flex-col sm:flex-row items-center sm:items-baseline gap-1 sm:gap-2 px-4 sm:px-8 py-2.5 rounded-xl font-semibold text-sm transition-all duration-200 ${
-                  tab === t.key
+                  tab === tb.key
                     ? "bg-[#1a3a2a] text-white shadow-md"
                     : "text-[#8b7b6a] hover:bg-[#EDE0CC]/60"
                 }`}
               >
-                <span>{t.label}</span>
-                <span className="text-[10px] opacity-60">{t.sub}</span>
+                <span>{tb.label}</span>
+                <span className="text-[10px] opacity-60">{tb.sub}</span>
               </button>
             ))}
           </div>
@@ -130,8 +129,8 @@ export default function MenuPage() {
             <div className="mb-8 flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#2d5a3d] flex items-center justify-center text-white text-base shadow">☀️</div>
               <div>
-                <p className="text-[10px] font-bold text-[#3d7a52] tracking-widest uppercase">Lunch 11:30〜14:30</p>
-                <h2 className="font-serif text-xl font-bold text-[#1e1a14]">ランチメニュー</h2>
+                <p className="text-[10px] font-bold text-[#3d7a52] tracking-widest uppercase">Lunch {t(m.lunchSub, lang)}</p>
+                <h2 className="font-serif text-xl font-bold text-[#1e1a14]">{t(m.lunchH2, lang)}</h2>
               </div>
             </div>
           )}
@@ -139,8 +138,8 @@ export default function MenuPage() {
             <div className="mb-8 flex items-center gap-3">
               <div className="w-10 h-10 rounded-xl bg-[#e8720c] flex items-center justify-center text-white text-base shadow">🌙</div>
               <div>
-                <p className="text-[10px] font-bold text-[#e8720c] tracking-widest uppercase">Dinner &amp; Bar 17:00〜22:00</p>
-                <h2 className="font-serif text-xl font-bold text-[#1e1a14]">居酒屋メニュー</h2>
+                <p className="text-[10px] font-bold text-[#e8720c] tracking-widest uppercase">Dinner &amp; Bar {t(m.dinnerSub, lang)}</p>
+                <h2 className="font-serif text-xl font-bold text-[#1e1a14]">{t(m.dinnerH2, lang)}</h2>
               </div>
             </div>
           )}
@@ -148,7 +147,7 @@ export default function MenuPage() {
           <AnimatePresence mode="wait">
             <div key={tab} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
               {items.map((item, i) => (
-                <MenuCard key={item.id} item={item} idx={i} />
+                <MenuCard key={item.id} item={item} idx={i} popularLabel={t(m.popular, lang)} />
               ))}
             </div>
           </AnimatePresence>
@@ -165,7 +164,7 @@ export default function MenuPage() {
               rel="noopener noreferrer"
               className="btn-sun"
             >
-              🍽️ ホットペッパーで全メニューを見る・予約
+              🍽️ {t(m.ctaAll, lang)}
             </a>
           </motion.div>
         </div>

@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { Wine, Users } from "lucide-react";
 import menuData from "@/data/menu.json";
 import Footer from "../components/Footer";
+import { useLang } from "@/context/LanguageContext";
+import { translations, t } from "@/lib/translations";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 const { desc, notice, plans, list } = menuData.sake;
@@ -43,7 +45,21 @@ function SakeCard({ sake, idx }: { sake: SakeItem; idx: number }) {
   );
 }
 
+function durLabel(dur: string, lang: Parameters<typeof t>[1]): string {
+  const s = translations.sake;
+  switch (dur) {
+    case "30分":  return t(s.dur30, lang);
+    case "60分":  return t(s.dur60, lang);
+    case "120分": return t(s.dur120, lang);
+    case "無制限": return t(s.durUnlimited, lang);
+    default: return dur;
+  }
+}
+
 export default function SakePage() {
+  const { lang } = useLang();
+  const s = translations.sake;
+
   return (
     <>
       {/* ─── ヒーロー ─── */}
@@ -60,7 +76,7 @@ export default function SakePage() {
             className="text-[10px] tracking-[0.35em] uppercase font-bold mb-5"
             style={{ color: "#c9862a" }}
           >
-            Sake All-You-Can-Drink
+            {t(s.eyebrow, lang)}
           </motion.p>
           <motion.h1
             initial={{ opacity: 0, y: 28 }}
@@ -68,8 +84,8 @@ export default function SakePage() {
             transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
             className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-bold leading-tight mb-4"
           >
-            農家直営の肴と合わせたい、<br />
-            <span className="text-[#e8c55a]">全国の日本酒 飲み放題。</span>
+            {t(s.h1line1, lang)}<br />
+            <span className="text-[#e8c55a]">{t(s.h1line2, lang)}</span>
           </motion.h1>
           <motion.p
             initial={{ opacity: 0 }}
@@ -96,11 +112,11 @@ export default function SakePage() {
             <div className="flex flex-wrap items-center gap-6 mb-3">
               <div className="flex items-center gap-2 text-white/60 text-sm">
                 <Users size={14} strokeWidth={1} className="text-[#c9862a]" />
-                お一人様からOK
+                {t(s.soloOk, lang)}
               </div>
               <div className="flex items-center gap-2 text-white/60 text-sm">
                 <Wine size={14} strokeWidth={1} className="text-[#c9862a]" />
-                全{list.length}種類以上
+                {list.length}{t(s.typeCount, lang)}
               </div>
             </div>
             <p className="text-white/30 text-xs">{notice}</p>
@@ -117,26 +133,22 @@ export default function SakePage() {
                 transition={{ duration: 0.55, delay: i * 0.07, ease: EASE }}
                 className="border p-6 sm:p-8 flex flex-col gap-3"
                 style={{
-                  borderColor: i === 3
-                    ? "rgba(201,134,42,0.6)"
-                    : "rgba(201,134,42,0.2)",
-                  background: i === 3
-                    ? "rgba(201,134,42,0.1)"
-                    : "rgba(255,255,255,0.03)",
+                  borderColor: i === 3 ? "rgba(201,134,42,0.6)" : "rgba(201,134,42,0.2)",
+                  background:  i === 3 ? "rgba(201,134,42,0.1)" : "rgba(255,255,255,0.03)",
                 }}
               >
                 <div className="text-xs tracking-[0.15em] uppercase font-bold" style={{ color: "#c9862a" }}>
-                  {p.duration}
+                  {durLabel(p.duration, lang)}
                 </div>
                 <div>
                   <span className="font-serif text-4xl sm:text-5xl font-bold text-white">
                     {p.price}
                   </span>
-                  <span className="text-white/40 text-xs ml-1">円</span>
+                  <span className="text-white/40 text-xs ml-1">{t(s.yen, lang)}</span>
                 </div>
                 {i === 3 && (
                   <span className="text-[10px] tracking-[0.1em] uppercase" style={{ color: "#e8c55a" }}>
-                    — Best Value
+                    {t(s.bestValue, lang)}
                   </span>
                 )}
               </motion.div>
@@ -145,8 +157,7 @@ export default function SakePage() {
 
           <div className="border-t border-white/10 pt-10 mb-16 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6">
             <p className="text-white/50 text-sm leading-relaxed">
-              熊本直送の馬刺しと日本酒の組み合わせ、<br className="hidden sm:block" />
-              一度体験したら忘れられません。
+              {t(s.basashiBody, lang)}
             </p>
             <a
               href="https://www.hotpepper.jp/strJ001342063/"
@@ -154,7 +165,7 @@ export default function SakePage() {
               rel="noopener noreferrer"
               className="btn-sun shrink-0"
             >
-              今すぐ予約
+              {t(s.reserveNow, lang)}
             </a>
           </div>
 
@@ -166,7 +177,7 @@ export default function SakePage() {
             transition={{ duration: 0.55, ease: EASE }}
             className="font-serif text-2xl text-white font-bold mb-10"
           >
-            現在の日本酒ラインナップ
+            {t(s.lineup, lang)}
           </motion.h2>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -176,7 +187,7 @@ export default function SakePage() {
           </div>
 
           <p className="text-white/25 text-xs mt-8">
-            ※ラインナップは仕入れ状況により変更になる場合があります
+            {t(s.lineupNote, lang)}
           </p>
         </div>
       </section>
@@ -194,13 +205,13 @@ export default function SakePage() {
             transition={{ duration: 0.6, ease: EASE }}
           >
             <p className="text-[10px] tracking-[0.35em] uppercase font-bold mb-6" style={{ color: "#c9862a" }}>
-              Pairing
+              {t(s.pairingLabel, lang)}
             </p>
-            <h2 className="font-serif text-2xl sm:text-3xl text-white font-bold mb-4 leading-snug">
-              熊本直送 全9種の馬刺しと<br />全国厳選日本酒の組み合わせ
+            <h2 className="font-serif text-2xl sm:text-3xl text-white font-bold mb-4 leading-snug whitespace-pre-line">
+              {t(s.pairingH2, lang)}
             </h2>
             <p className="text-white/50 text-base leading-relaxed mb-8 max-w-lg">
-              農家直営だからできる新鮮な肴に、全国から選び抜いた日本酒を合わせる。これがハレルヤ流、大人の楽しみ方です。
+              {t(s.pairingBody, lang)}
             </p>
             <a
               href="https://www.hotpepper.jp/strJ001342063/"
@@ -208,7 +219,7 @@ export default function SakePage() {
               rel="noopener noreferrer"
               className="btn-sun"
             >
-              今夜の席を予約する
+              {t(s.reserveTonight, lang)}
             </a>
           </motion.div>
         </div>

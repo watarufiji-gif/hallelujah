@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Header    from "./components/Header";
 import MobileNav from "./components/MobileNav";
+import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
   title: "農村かふぇ ハレルヤ｜長後駅3分・農家直営・日本酒飲み放題",
@@ -28,9 +29,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         />
       </head>
       <body className="min-h-screen bg-paper antialiased">
-        <Header />
-        <main>{children}</main>
-        <MobileNav />
+        <LanguageProvider>
+          <Header />
+          <main>{children}</main>
+          <MobileNav />
+        </LanguageProvider>
       </body>
     </html>
   );
