@@ -124,7 +124,7 @@ export const translations = {
     addrLabel:    { ja: "住所", en: "Address", ko: "주소", zh: "地址" } as T,
     addrVal:      { ja: "神奈川県藤沢市長後4丁目", en: "4-chome, Chogo, Fujisawa, Kanagawa", ko: "가나가와현 후지사와시 나가오 4丁目", zh: "神奈川县藤泽市长后4丁目" } as T,
     addrBadge:    { ja: "長後駅東口 徒歩3分", en: "3 min from Chogo Sta. East Exit", ko: "나가오역 동쪽 출구 도보 3분", zh: "长后站东口步行3分" } as T,
-    addrNote:     { ja: "── 長後郵便局の向かい・ドキわくランド長後駅前店の隣", en: "── Across from Chogo Post Office, next to Dokiwaku Land", ko: "── 나가오 우체국 맞은편 · 도키와쿠란드 역전점 옆", zh: "── 长后邮局对面 · 多喜乐园车站前店旁" } as T,
+    addrNote:     { ja: "── 長後郵便局 斜め前", en: "── Diagonally across from Chogo Post Office", ko: "── 나가오 우체국 사선 앞", zh: "── 长后邮局斜对面" } as T,
     phoneLabel:   { ja: "電話", en: "Phone", ko: "전화", zh: "电话" } as T,
     seatsLabel:   { ja: "席", en: "Seats", ko: "좌석", zh: "座位" } as T,
     seatsVal:     { ja: "カウンター席・小上がり席（ベビーカーOK）", en: "Counter & raised tatami seating (strollers welcome)", ko: "카운터 좌석 · 다다미 좌석 (유모차 OK)", zh: "吧台座位·和式座位（婴儿车OK）" } as T,
