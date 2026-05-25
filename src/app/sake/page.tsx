@@ -34,7 +34,7 @@ function SakeCard({ sake, idx }: { sake: SakeItem; idx: number }) {
         <div className="flex-1 min-w-0">
           <h3 className="font-serif text-lg font-bold text-white mb-0.5">{sake.name}</h3>
           <p className="text-[#e8c55a]/70 text-xs font-semibold mb-1.5">
-            {sake.brewery} ／ {sake.type}
+            {sake.brewery} ／ {sake.region}
           </p>
           <p className="text-white/50 text-xs leading-relaxed">{sake.desc}</p>
         </div>
