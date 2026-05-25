@@ -27,10 +27,9 @@ export default function Hero() {
         }}
       />
 
-      {/* ヘッダー直下から開始、画面高さは確保しつつ上詰め */}
       <div
         className="relative z-10"
-        style={{ paddingTop: "calc(5rem + 2.5rem)", paddingBottom: "2.5rem", minHeight: "100svh" }}
+        style={{ paddingTop: "calc(5rem + 2rem)", paddingBottom: "3rem" }}
       >
         <div className="max-w-6xl mx-auto px-6 sm:px-10 w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">

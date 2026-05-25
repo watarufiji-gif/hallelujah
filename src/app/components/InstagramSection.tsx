@@ -12,7 +12,7 @@ export default function InstagramSection() {
   const ig = translations.instagram;
 
   return (
-    <section id="instagram" className="py-40 sm:py-56" style={{ background: "#f0f5f2" }}>
+    <section id="instagram" className="py-16 sm:py-24" style={{ background: "#f0f5f2" }}>
       <div className="max-w-4xl mx-auto px-6 sm:px-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}

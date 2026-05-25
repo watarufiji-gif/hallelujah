@@ -20,11 +20,11 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="py-40 sm:py-56" style={{ background: "#ffffff" }}>
+    <section id="features" className="py-16 sm:py-24" style={{ background: "#ffffff" }}>
       <div className="max-w-4xl mx-auto px-6 sm:px-10">
 
         <motion.div
-          className="mb-24 sm:mb-32"
+          className="mb-12 sm:mb-16"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -46,7 +46,7 @@ export default function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-40px" }}
               transition={{ duration: 0.7, delay: i * 0.06, ease: EASE }}
-              className="grid grid-cols-[2.5rem_1fr] sm:grid-cols-[5rem_1fr] gap-6 sm:gap-14 py-16 sm:py-20 border-t last:border-b"
+              className="grid grid-cols-[2.5rem_1fr] sm:grid-cols-[5rem_1fr] gap-6 sm:gap-14 py-10 sm:py-14 border-t last:border-b"
               style={{ borderColor: "#e5e5e5" }}
             >
               <div
@@ -85,7 +85,7 @@ export default function Features() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
-          className="mt-24 sm:mt-32"
+          className="mt-12 sm:mt-16"
         >
           <div
             className="p-10 sm:p-14"
