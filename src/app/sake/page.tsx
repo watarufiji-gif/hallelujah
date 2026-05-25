@@ -32,12 +32,9 @@ function SakeCard({ sake, idx }: { sake: SakeItem; idx: number }) {
       <div className="flex items-start gap-3">
         <Wine size={18} strokeWidth={1} className="text-[#c9862a] shrink-0 mt-0.5" />
         <div className="flex-1 min-w-0">
-          <div className="flex items-baseline gap-2 flex-wrap mb-0.5">
-            <h3 className="font-serif text-lg font-bold text-white">{sake.name}</h3>
-            <span className="text-[#c9862a] text-sm">{sake.grade}</span>
-          </div>
+          <h3 className="font-serif text-lg font-bold text-white mb-0.5">{sake.name}</h3>
           <p className="text-[#e8c55a]/70 text-xs font-semibold mb-1.5">
-            {sake.region} ／ {sake.type}
+            {sake.brewery} ／ {sake.type}
           </p>
           <p className="text-white/50 text-xs leading-relaxed">{sake.desc}</p>
         </div>
