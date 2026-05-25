@@ -43,76 +43,71 @@ export default function AccessPage() {
   return (
     <>
       {/* ─── ページヒーロー ─── */}
-      <div
-        className="pt-20 md:pt-24"
-        style={{ background: "linear-gradient(170deg, #1b2e22 0%, #22392b 100%)" }}
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 py-14 text-center">
+      <div className="pt-20 md:pt-24" style={{ background: "#ffffff", borderBottom: "1px solid #e5e5e5" }}>
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-[10px] tracking-[0.35em] uppercase font-bold mb-3"
-            style={{ color: "#a8d5b0" }}
+            className="sec-eyebrow mb-5"
           >
             {t(a.eyebrow, lang)}
           </motion.p>
           <motion.h1
-            initial={{ opacity: 0, y: 24 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, delay: 0.1, ease: EASE }}
-            className="font-serif text-3xl sm:text-4xl font-bold"
-            style={{ color: "#f0ece0" }}
+            transition={{ duration: 0.6, delay: 0.1, ease: EASE }}
+            className="font-serif text-4xl sm:text-5xl font-bold"
+            style={{ color: "#1a1a1a" }}
           >
-            {t(a.h1main, lang)}<span style={{ color: "#d4a96a" }}>{t(a.h1span, lang)}</span>
+            {t(a.h1main, lang)}<span style={{ color: "#1a3a2a" }}>{t(a.h1span, lang)}</span>
           </motion.h1>
         </div>
       </div>
 
-      {/* ─── メインコンテンツ ─── */}
-      <section className="py-16 sm:py-24" style={{ background: "#F4EFE6" }}>
+      <section className="py-20 sm:py-32" style={{ background: "#ffffff" }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-8">
 
           {/* ━━━ 店舗情報（最上部）━━━ */}
           <FadeUp>
             <div
               className="p-6 sm:p-8 shadow-md"
-              style={{ background: "#FAF6F0", border: "1px solid rgba(161,120,60,0.18)" }}
+              style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}
             >
-              <h3 className="font-serif text-lg font-bold flex items-center gap-2 mb-5" style={{ color: "#1e1a14" }}>
-                <MapPin size={17} className="text-[#3d7a52]" /> {t(a.storeInfo, lang)}
+              <h3 className="font-serif text-lg font-bold flex items-center gap-2 mb-5" style={{ color: "#1a1a1a" }}>
+                <MapPin size={17} className="text-[#2d5a3d]" /> {t(a.storeInfo, lang)}
               </h3>
               <dl className="grid grid-cols-1 sm:grid-cols-2 gap-x-12 gap-y-3 text-sm">
                 <div className="flex gap-3">
-                  <dt className="font-semibold w-10 shrink-0" style={{ color: "#8b7b6a" }}>{t(a.storeName, lang)}</dt>
-                  <dd style={{ color: "#1e1a14" }}>{t(a.storeNameVal, lang)}</dd>
+                  <dt className="font-semibold w-10 shrink-0" style={{ color: "#999999" }}>{t(a.storeName, lang)}</dt>
+                  <dd style={{ color: "#1a1a1a" }}>{t(a.storeNameVal, lang)}</dd>
                 </div>
                 <div className="flex gap-3">
-                  <dt className="font-semibold w-10 shrink-0" style={{ color: "#8b7b6a" }}>{t(a.phoneLabel, lang)}</dt>
+                  <dt className="font-semibold w-10 shrink-0" style={{ color: "#999999" }}>{t(a.phoneLabel, lang)}</dt>
                   <dd>
                     <a
                       href="tel:0466-45-8866"
                       className="flex items-center gap-1.5 font-bold hover:underline"
-                      style={{ color: "#e8720c" }}
+                      style={{ color: "#1a3a2a" }}
                     >
                       <Phone size={13} /> 0466-45-8866
                     </a>
                   </dd>
                 </div>
                 <div className="flex gap-3 sm:col-span-2">
-                  <dt className="font-semibold w-10 shrink-0" style={{ color: "#8b7b6a" }}>{t(a.addrLabel, lang)}</dt>
-                  <dd style={{ color: "#1e1a14" }}>
+                  <dt className="font-semibold w-10 shrink-0" style={{ color: "#999999" }}>{t(a.addrLabel, lang)}</dt>
+                  <dd style={{ color: "#1a1a1a" }}>
                     {t(a.addrVal, lang)}
-                    <span className="ml-2 text-xs font-semibold px-2 py-0.5" style={{ background: "rgba(61,122,82,0.1)", color: "#3d7a52" }}>
+                    <span className="ml-2 text-xs font-semibold px-2 py-0.5" style={{ background: "rgba(61,122,82,0.1)", color: "#2d5a3d" }}>
                       {t(a.addrBadge, lang)}
                     </span>
-                    <span className="block mt-1 text-xs" style={{ color: "#8b7b6a" }}>
+                    <span className="block mt-1 text-xs" style={{ color: "#999999" }}>
                       {t(a.addrNote, lang)}
                     </span>
                   </dd>
                 </div>
                 <div className="flex gap-3">
-                  <dt className="font-semibold w-10 shrink-0" style={{ color: "#8b7b6a" }}>{t(a.seatsLabel, lang)}</dt>
-                  <dd style={{ color: "#1e1a14" }}>{t(a.seatsVal, lang)}</dd>
+                  <dt className="font-semibold w-10 shrink-0" style={{ color: "#999999" }}>{t(a.seatsLabel, lang)}</dt>
+                  <dd style={{ color: "#1a1a1a" }}>{t(a.seatsVal, lang)}</dd>
                 </div>
               </dl>
             </div>
@@ -149,10 +144,10 @@ export default function AccessPage() {
             <FadeUp delay={0.1}>
               <div
                 className="p-6 shadow-md h-full"
-                style={{ background: "#FAF6F0", border: "1px solid rgba(161,120,60,0.12)" }}
+                style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}
               >
-                <h3 className="font-serif text-lg font-bold flex items-center gap-2 mb-5" style={{ color: "#1e1a14" }}>
-                  <Clock size={17} className="text-[#3d7a52]" /> {t(a.hoursTitle, lang)}
+                <h3 className="font-serif text-lg font-bold flex items-center gap-2 mb-5" style={{ color: "#1a1a1a" }}>
+                  <Clock size={17} className="text-[#2d5a3d]" /> {t(a.hoursTitle, lang)}
                 </h3>
                 <div className="space-y-2">
                   {HOURS.map(h => (
@@ -161,7 +156,7 @@ export default function AccessPage() {
                       className={`flex justify-between items-center py-2.5 border-b last:border-0 ${h.closed ? "opacity-40" : ""}`}
                       style={{ borderColor: "rgba(161,120,60,0.12)" }}
                     >
-                      <span className="text-sm font-semibold" style={{ color: "#1e1a14" }}>{h.day}</span>
+                      <span className="text-sm font-semibold" style={{ color: "#1a1a1a" }}>{h.day}</span>
                       <span
                         className="text-sm font-bold"
                         style={{ color: h.closed ? "#ef4444" : "#2d5a3d" }}
@@ -183,7 +178,7 @@ export default function AccessPage() {
             >
               <div
                 className="px-5 sm:px-8 py-3 flex items-center gap-3"
-                style={{ background: "#e8720c" }}
+                style={{ background: "#1a3a2a" }}
               >
                 <ParkingCircle size={18} strokeWidth={1.5} className="text-white shrink-0" />
                 <span className="text-white font-black text-sm tracking-wide">
@@ -197,14 +192,14 @@ export default function AccessPage() {
                 <div className="flex flex-col sm:flex-row items-start sm:items-center gap-6">
                   <div
                     className="w-16 h-16 flex items-center justify-center shrink-0"
-                    style={{ background: "#e8720c" }}
+                    style={{ background: "#1a3a2a" }}
                   >
                     <ParkingCircle size={30} strokeWidth={1} className="text-white" />
                   </div>
                   <div>
-                    <h2 className="font-serif text-xl sm:text-2xl font-bold mb-2" style={{ color: "#1e1a14" }}>
+                    <h2 className="font-serif text-xl sm:text-2xl font-bold mb-2" style={{ color: "#1a1a1a" }}>
                       {t(a.parkH2pre, lang)}
-                      <span className="text-4xl font-black text-[#e8720c] ml-1">{t(a.parkFree, lang)}</span>！
+                      <span className="text-4xl font-black text-[#1a3a2a] ml-1">{t(a.parkFree, lang)}</span>！
                     </h2>
                     <p className="text-sm sm:text-base leading-relaxed" style={{ color: "#4a3f32" }}>
                       {t(a.parkBody, lang)}
@@ -220,11 +215,11 @@ export default function AccessPage() {
             <FadeUp delay={0.1}>
               <div
                 className="p-6 shadow-md flex gap-4 items-start"
-                style={{ background: "#FAF6F0", border: "1px solid rgba(161,120,60,0.12)" }}
+                style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}
               >
                 <Train size={24} strokeWidth={1} className="text-[#2d5a3d] shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="font-serif text-base font-bold mb-1" style={{ color: "#1e1a14" }}>{t(a.trainTitle, lang)}</h3>
+                  <h3 className="font-serif text-base font-bold mb-1" style={{ color: "#1a1a1a" }}>{t(a.trainTitle, lang)}</h3>
                   <p className="text-sm leading-relaxed" style={{ color: "#4a3f32" }}>
                     {t(a.trainBody, lang)}
                   </p>
@@ -236,9 +231,9 @@ export default function AccessPage() {
                 className="p-6 shadow-md flex gap-4 items-start"
                 style={{ background: "#FFF8F0", border: "2px solid rgba(232,114,12,0.25)" }}
               >
-                <ParkingCircle size={24} strokeWidth={1} className="text-[#e8720c] shrink-0 mt-0.5" />
+                <ParkingCircle size={24} strokeWidth={1} className="text-[#1a3a2a] shrink-0 mt-0.5" />
                 <div>
-                  <h3 className="font-serif text-base font-bold mb-1" style={{ color: "#1e1a14" }}>{t(a.carTitle, lang)}</h3>
+                  <h3 className="font-serif text-base font-bold mb-1" style={{ color: "#1a1a1a" }}>{t(a.carTitle, lang)}</h3>
                   <p className="text-sm leading-relaxed" style={{ color: "#4a3f32" }}>
                     {t(a.carBody, lang)}
                   </p>
@@ -249,7 +244,7 @@ export default function AccessPage() {
 
           {/* ━━━ 予約 CTA ━━━ */}
           <FadeUp className="text-center py-4">
-            <p className="text-sm mb-5" style={{ color: "#8b7b6a" }}>
+            <p className="text-sm mb-5" style={{ color: "#999999" }}>
               {t(a.reserveCta, lang)}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">

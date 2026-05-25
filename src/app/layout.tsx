@@ -28,7 +28,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen bg-paper antialiased">
+      <body className="min-h-screen antialiased">
         <LanguageProvider>
           <Header />
           <main>{children}</main>

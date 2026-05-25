@@ -24,7 +24,7 @@ export default function ChalkboardSection() {
   const { date, message, veggie, author } = board;
 
   return (
-    <section className="py-10 sm:py-14 bg-[#FAF6F0]">
+    <section className="py-40 sm:py-56 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 32, rotate: -0.8 }}
@@ -68,18 +68,6 @@ export default function ChalkboardSection() {
               </blockquote>
             </div>
 
-            <div className="mt-6 flex flex-wrap gap-2 justify-end">
-              {[t(c.tag1, lang), t(c.tag2, lang), t(c.tag3, lang)].map(tag => (
-                <span key={tag} className="chalk-text-dim text-[10px] border border-white/15 rounded-full px-2.5 py-0.5 font-kiwi">
-                  ✓ {tag}
-                </span>
-              ))}
-            </div>
-
-            <div className="absolute top-3 left-3  w-8 h-8 rounded-full bg-white/3 blur-sm" />
-            <div className="absolute top-3 right-3 w-6 h-6 rounded-full bg-white/3 blur-sm" />
-            <div className="absolute bottom-3 left-3  w-5 h-5 rounded-full bg-white/3 blur-sm" />
-            <div className="absolute bottom-3 right-3 w-9 h-9 rounded-full bg-white/3 blur-sm" />
           </div>
 
           <div className="bg-[#142318] px-6 sm:px-10 py-3 flex items-center gap-2">

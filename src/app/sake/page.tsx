@@ -30,13 +30,13 @@ function SakeCard({ sake, idx }: { sake: SakeItem; idx: number }) {
       }}
     >
       <div className="flex items-start gap-3">
-        <Wine size={18} strokeWidth={1} className="text-[#c9862a] shrink-0 mt-0.5" />
+        <Wine size={16} strokeWidth={1} className="text-[#c9862a] shrink-0 mt-0.5" />
         <div className="flex-1 min-w-0">
           <h3 className="font-serif text-lg font-bold text-white mb-0.5">{sake.name}</h3>
-          <p className="text-[#e8c55a]/70 text-xs font-semibold mb-1.5">
+          <p className="text-xs font-semibold mb-2" style={{ color: "rgba(201,134,42,0.7)" }}>
             {sake.brewery} ／ {sake.region}
           </p>
-          <p className="text-white/50 text-xs leading-relaxed">{sake.desc}</p>
+          <p className="text-white/40 text-xs leading-relaxed">{sake.desc}</p>
         </div>
       </div>
     </motion.div>

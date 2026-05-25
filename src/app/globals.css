@@ -1,150 +1,112 @@
 @import "tailwindcss";
 
 @theme inline {
-  /* ─── ベースカラー ─── */
-  --color-paper:          #FAF6F0;
-  --color-paper-dark:     #F0E9DC;
-  --color-paper-mid:      #EDE0CC;
+  --color-forest:       #1a3a2a;
+  --color-forest-mid:   #2d5a3d;
+  --color-forest-bg:    #f0f5f2;
 
-  --color-forest:         #1a3a2a;
-  --color-forest-mid:     #2d5a3d;
-  --color-forest-bright:  #3d7a52;
-  --color-forest-light:   #a8d5b0;
+  --color-ink:          #1a1a1a;
+  --color-ink-mid:      #555555;
+  --color-ink-light:    #999999;
+  --color-border:       #e5e5e5;
 
-  --color-sun:            #e8720c;
-  --color-sun-mid:        #f59339;
-  --color-sun-pale:       #fde9ce;
+  --color-board:        #1a2e22;
+  --color-sake-bg:      #0f1a14;
+  --color-sake-amber:   #c9862a;
+  --color-sake-gold:    #e8c55a;
 
-  --color-chalk:          #f5f2e8;
-  --color-board:          #1a2e22;
-  --color-board-mid:      #22382a;
-
-  --color-ink:            #1e1a14;
-  --color-ink-mid:        #4a3f32;
-  --color-ink-light:      #8b7b6a;
-
-  --color-sake-bg:        #111816;
-  --color-sake-amber:     #c9862a;
-  --color-sake-gold:      #e8c55a;
-
-  /* ─── フォント ─── */
-  --font-sans:   "Noto Sans JP",   "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
-  --font-serif:  "Noto Serif JP",  "Hiragino Mincho ProN", "Yu Mincho", serif;
-  --font-kiwi:   "Kiwi Maru",      "Hiragino Mincho ProN", serif;
+  --font-sans:  "Noto Sans JP",  "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+  --font-serif: "Noto Serif JP", "Hiragino Mincho ProN", "Yu Mincho", serif;
+  --font-kiwi:  "Kiwi Maru",     "Hiragino Mincho ProN", serif;
 }
 
-/* ─── ベース ─── */
 html { scroll-behavior: smooth; }
 body {
-  background-color: #FAF6F0;
-  color: #1e1a14;
+  background-color: #ffffff;
+  color: #1a1a1a;
   font-family: var(--font-sans);
 }
 
-/* ─── フォントユーティリティ ─── */
 .font-serif { font-family: var(--font-serif); }
 .font-kiwi  { font-family: var(--font-kiwi);  }
 
-/* ─── 和紙テクスチャ ─── */
-.bg-paper {
-  background-color: #FAF6F0;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
-}
+.bg-paper { background-color: #ffffff; }
 
-/* ─── 黒板テクスチャ ─── */
 .bg-chalkboard {
   background-color: #1a2e22;
-  background-image:
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
 }
 
-/* ─── 夜の雰囲気（日本酒ページ）─── */
 .bg-night {
-  background-color: #0f1c14;
-  background-image:
-    radial-gradient(ellipse 60% 50% at 20% 10%, rgba(201,134,42,0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 40% 40% at 85% 85%, rgba(201,134,42,0.08) 0%, transparent 60%);
+  background-color: #0f1a14;
+  background-image: radial-gradient(ellipse 60% 50% at 20% 10%, rgba(201,134,42,0.1) 0%, transparent 60%);
 }
 
-/* ─── ブロブシェイプ ─── */
-.blob-a { border-radius: 62% 38% 73% 27% / 52% 63% 37% 48%; }
-.blob-b { border-radius: 38% 62% 45% 55% / 60% 38% 62% 40%; }
-.blob-c { border-radius: 70% 30% 48% 52% / 42% 58% 42% 58%; }
-
-/* ─── セクション共通タイトル ─── */
+/* Section label */
 .sec-eyebrow {
   font-size: 0.68rem;
-  letter-spacing: 0.3em;
+  letter-spacing: 0.32em;
   text-transform: uppercase;
   font-weight: 700;
-  color: var(--color-forest-bright);
-}
-.sec-title-serif {
-  font-family: var(--font-serif);
-  font-size: clamp(1.6rem, 4.5vw, 2.6rem);
-  font-weight: 700;
-  color: var(--color-ink);
-  line-height: 1.4;
+  color: #2d5a3d;
 }
 
-/* ─── ボタン ─── */
+/* Buttons — deep green only */
 .btn-sun {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  background: #e8720c;
-  color: #fff; font-weight: 700; font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  padding: 0.78rem 2rem;
-  transition: background 0.2s ease; text-decoration: none;
+  background: #1a3a2a;
+  color: #fff; font-weight: 600; font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  padding: 0.85rem 2.2rem;
+  transition: background 0.2s; text-decoration: none;
 }
-.btn-sun:hover { background: #cf640a; }
+.btn-sun:hover { background: #2d5a3d; }
 
 .btn-forest {
   display: inline-flex; align-items: center; gap: 0.5rem;
-  background: #2d5a3d;
-  color: #fff; font-weight: 700; font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  padding: 0.78rem 2rem;
-  transition: background 0.2s ease; text-decoration: none;
+  background: #1a3a2a;
+  color: #fff; font-weight: 600; font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  padding: 0.85rem 2.2rem;
+  transition: background 0.2s; text-decoration: none;
 }
-.btn-forest:hover { background: #1a3a2a; }
+.btn-forest:hover { background: #2d5a3d; }
 
 .btn-ghost {
   display: inline-flex; align-items: center; gap: 0.5rem;
   background: transparent;
-  color: #2d5a3d; font-weight: 700; font-size: 0.78rem;
-  letter-spacing: 0.1em;
-  padding: 0.76rem 1.98rem;
-  border: 1px solid #2d5a3d;
-  transition: all 0.2s ease; text-decoration: none;
+  color: #1a3a2a; font-weight: 600; font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  padding: 0.83rem 2.18rem;
+  border: 1.5px solid #1a3a2a;
+  transition: all 0.2s; text-decoration: none;
 }
-.btn-ghost:hover { background: #2d5a3d; color: #fff; }
+.btn-ghost:hover { background: #1a3a2a; color: #fff; }
 
-/* ─── 手書き風価格タグ ─── */
+/* For use on dark backgrounds */
+.btn-white {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: transparent;
+  color: #ffffff; font-weight: 600; font-size: 0.78rem;
+  letter-spacing: 0.08em;
+  padding: 0.83rem 2.18rem;
+  border: 1.5px solid rgba(255,255,255,0.4);
+  transition: all 0.2s; text-decoration: none;
+}
+.btn-white:hover { background: rgba(255,255,255,0.1); }
+
+/* Price tag */
 .price-stamp {
   display: inline-block;
   font-family: var(--font-kiwi);
-  background: var(--color-sun);
+  background: #1a3a2a;
   color: #fff; font-weight: 500;
-  padding: 0.18rem 0.7rem; border-radius: 9999px;
+  padding: 0.18rem 0.7rem;
   font-size: 0.82rem;
-  box-shadow: 1px 2px 0 rgba(0,0,0,0.15);
-  transform: rotate(-1.5deg);
 }
 
-/* ─── 傾きユーティリティ ─── */
-.tilt-1  { transform: rotate( 1.2deg); }
-.tilt-2  { transform: rotate(-1.1deg); }
-.tilt-3  { transform: rotate( 0.7deg); }
-.tilt-hover:hover { transform: rotate(0) translateY(-8px); transition: transform 0.25s ease; }
+/* Chalk text */
+.chalk-text     { color: #e8e8d8; text-shadow: 0 0 8px rgba(232,232,216,0.2), 1px 1px 0 rgba(0,0,0,0.3); }
+.chalk-text-dim { color: rgba(232,232,216,0.5); }
 
-/* ─── チョーク文字 ─── */
-.chalk-text {
-  color: #e8e8d8;
-  text-shadow: 0 0 8px rgba(232,232,216,0.25),
-               1px 1px 0 rgba(0,0,0,0.3);
-}
-.chalk-text-dim { color: rgba(232,232,216,0.55); }
-
-/* ─── スクロールフェード（Framer Motion 補助）─── */
 .will-fade { opacity: 0; transform: translateY(28px); }
