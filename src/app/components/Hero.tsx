@@ -27,12 +27,12 @@ export default function Hero() {
         }}
       />
 
-      {/* ヘッダー分だけ下げて、残りの画面高さ全体でコンテンツを中央配置 */}
+      {/* ヘッダー直下から開始、画面高さは確保しつつ上詰め */}
       <div
-        className="relative z-10 flex items-center"
-        style={{ minHeight: "calc(100svh - 5rem)", marginTop: "5rem" }}
+        className="relative z-10"
+        style={{ paddingTop: "calc(5rem + 2.5rem)", paddingBottom: "2.5rem", minHeight: "100svh" }}
       >
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 w-full py-8 sm:py-10">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
 
             <motion.div
