@@ -49,8 +49,8 @@ export const translations = {
   },
 
   chalk: {
-    boardLabel: { ja: "Today's Board", en: "Today's Board", ko: "오늘의 칠판", zh: "今日黑板" } as T,
-    boardH2:    { ja: "今日の黒板", en: "Today's Board", ko: "오늘의 칠판", zh: "今日黑板" } as T,
+    boardLabel: { ja: "This Week's Board", en: "This Week's Board", ko: "이번 주 칠판", zh: "本周黑板" } as T,
+    boardH2:    { ja: "今週の黒板", en: "This Week's Board", ko: "이번 주 칠판", zh: "本周黑板" } as T,
     vegLabel:   { ja: "本日の主役野菜：", en: "Today's Star Veg:", ko: "오늘의 주인공 채소:", zh: "今日主角蔬菜：" } as T,
     tag1:       { ja: "毎朝仕入れ", en: "Daily fresh", ko: "매일 직송", zh: "每日进货" } as T,
     tag2:       { ja: "農家直送", en: "Farm-direct", ko: "농가 직송", zh: "农家直送" } as T,
