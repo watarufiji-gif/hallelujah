@@ -40,12 +40,12 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: EASE }}
             >
-              <p className="sec-eyebrow mb-5">農村かふぇ</p>
+              <p className="sec-eyebrow mb-5">長後農村かふぇ</p>
 
               {/* ハレルヤ: サイズを抑えてキャッチコピーとの比率を縮める */}
               <h1
                 className="font-serif font-bold leading-none mb-5"
-                style={{ fontSize: "clamp(2.8rem, 5.5vw, 4.2rem)", color: "#1a1a1a" }}
+                style={{ fontSize: "clamp(3.2rem, 6.5vw, 5rem)", color: "#1a1a1a" }}
               >
                 ハレルヤ
               </h1>
@@ -53,7 +53,7 @@ export default function Hero() {
               {/* キャッチコピー: 大きめにしてハレルヤとの差を縮める */}
               <p
                 className="font-serif leading-relaxed mb-10"
-                style={{ fontSize: "clamp(1.15rem, 2vw, 1.45rem)", color: "#1a3a2a" }}
+                style={{ fontSize: "clamp(1.25rem, 2.2vw, 1.6rem)", color: "#1a3a2a" }}
               >
                 {t(h.tagline, lang)}
               </p>

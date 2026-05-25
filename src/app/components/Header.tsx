@@ -88,7 +88,7 @@ export default function Header() {
       <div className="max-w-6xl mx-auto px-6 sm:px-10 flex items-center justify-between h-16 md:h-20">
 
         <Link href="/" className="flex flex-col leading-tight">
-          <span className="font-kiwi text-[9px] tracking-widest" style={{ color: "#2d5a3d" }}>農村かふぇ</span>
+          <span className="font-kiwi text-[9px] tracking-widest" style={{ color: "#2d5a3d" }}>長後農村かふぇ</span>
           <span className="font-serif text-lg font-bold" style={{ color: "#1a3a2a" }}>ハレルヤ</span>
         </Link>
 

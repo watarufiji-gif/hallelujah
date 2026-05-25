@@ -24,7 +24,7 @@ export default function Footer() {
 
           <div>
             <div className="mb-4">
-              <div className="font-kiwi text-[10px] tracking-widest mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>農村かふぇ</div>
+              <div className="font-kiwi text-[10px] tracking-widest mb-1" style={{ color: "rgba(255,255,255,0.4)" }}>長後農村かふぇ</div>
               <div className="font-serif text-xl font-bold" style={{ color: "#a8d5b0" }}>ハレルヤ</div>
             </div>
             <p className="text-xs leading-relaxed" style={{ color: "rgba(255,255,255,0.35)" }}>

@@ -5,12 +5,12 @@ import MobileNav from "./components/MobileNav";
 import { LanguageProvider } from "@/context/LanguageContext";
 
 export const metadata: Metadata = {
-  title: "農村かふぇ ハレルヤ｜長後駅3分・農家直営・日本酒飲み放題",
+  title: "長後農村かふぇ ハレルヤ｜長後駅3分・農家直営・日本酒飲み放題",
   description:
     "藤沢市・長後駅徒歩3分。農家直営「ふるうつらんど井上」の新鮮野菜×馬刺し×日本酒飲み放題。子連れ・おひとり様歓迎。駐車場無料。",
   keywords: ["長後駅","居酒屋","ランチ","農家直営","ハレルヤ","藤沢市","日本酒","飲み放題","馬刺し","カフェ","野菜","ラーメン","昼飲み","子連れ"],
   openGraph: {
-    title: "農村かふぇ ハレルヤ｜長後駅3分・農家直営・日本酒飲み放題",
+    title: "長後農村かふぇ ハレルヤ｜長後駅3分・農家直営・日本酒飲み放題",
     description: "農家直営ならではの新鮮野菜と圧倒的コスパ。日本酒飲み放題も解禁！",
     locale: "ja_JP",
     type: "website",

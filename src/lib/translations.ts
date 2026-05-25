@@ -74,7 +74,7 @@ export const translations = {
     accessFull:  { ja: "アクセス・営業時間", en: "Access & Hours", ko: "교통·영업시간", zh: "交通·营业时间" } as T,
     hotpepper:   { ja: "ホットペッパーで予約", en: "Reserve on HotPepper", ko: "핫페퍼로 예약", zh: "在HotPepper预约" } as T,
     instagramLabel: { ja: "Instagram", en: "Instagram", ko: "Instagram", zh: "Instagram" } as T,
-    copyright:   { ja: "© 2026 農村かふぇ ハレルヤ All Rights Reserved.", en: "© 2026 Nouson Cafe Hallelujah. All Rights Reserved.", ko: "© 2026 농촌 카페 하레루야. All Rights Reserved.", zh: "© 2026 农村咖啡 哈利路亚. All Rights Reserved." } as T,
+    copyright:   { ja: "© 2026 長後農村かふぇ ハレルヤ All Rights Reserved.", en: "© 2026 Nouson Cafe Hallelujah. All Rights Reserved.", ko: "© 2026 농촌 카페 하레루야. All Rights Reserved.", zh: "© 2026 农村咖啡 哈利路亚. All Rights Reserved." } as T,
   },
 
   menu: {
@@ -120,7 +120,7 @@ export const translations = {
     h1span:       { ja: "営業情報", en: "Access & Hours", ko: "영업정보", zh: "营业信息" } as T,
     storeInfo:    { ja: "店舗情報", en: "Store Info", ko: "매장 정보", zh: "店铺信息" } as T,
     storeName:    { ja: "店名", en: "Name", ko: "상호명", zh: "店名" } as T,
-    storeNameVal: { ja: "農村かふぇ ハレルヤ", en: "Nouson Cafe Hallelujah", ko: "농촌 카페 하레루야", zh: "农村咖啡 哈利路亚" } as T,
+    storeNameVal: { ja: "長後農村かふぇ ハレルヤ", en: "Nouson Cafe Hallelujah", ko: "농촌 카페 하레루야", zh: "农村咖啡 哈利路亚" } as T,
     addrLabel:    { ja: "住所", en: "Address", ko: "주소", zh: "地址" } as T,
     addrVal:      { ja: "神奈川県藤沢市長後4丁目", en: "4-chome, Chogo, Fujisawa, Kanagawa", ko: "가나가와현 후지사와시 나가오 4丁目", zh: "神奈川县藤泽市长后4丁目" } as T,
     addrBadge:    { ja: "長後駅東口 徒歩3分", en: "3 min from Chogo Sta. East Exit", ko: "나가오역 동쪽 출구 도보 3분", zh: "长后站东口步行3分" } as T,
