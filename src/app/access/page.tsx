@@ -10,10 +10,10 @@ import { translations, t } from "@/lib/translations";
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 const MAP_EMBED =
-  "https://maps.google.com/maps?q=農村かふぇ+ハレルヤ+神奈川県藤沢市長後&t=&z=17&ie=UTF8&iwloc=&output=embed";
+  "https://maps.google.com/maps?q=長後農村かふぇ+ハレルヤ+神奈川県藤沢市長後&t=&z=17&ie=UTF8&iwloc=&output=embed";
 
 const MAP_NAV =
-  "https://www.google.com/maps/dir/?api=1&destination=農村かふぇ+ハレルヤ+藤沢市長後&travelmode=driving";
+  "https://www.google.com/maps/dir/?api=1&destination=長後農村かふぇ+ハレルヤ+藤沢市長後&travelmode=driving";
 
 function FadeUp({ children, delay = 0, className = "" }: { children: React.ReactNode; delay?: number; className?: string }) {
   return (
@@ -34,11 +34,11 @@ export default function AccessPage() {
   const a = translations.access;
 
   const HOURS = [
-    { day: t(a.hr1day, lang), time: t(a.hr1time, lang), closed: false },
-    { day: t(a.hr2day, lang), time: t(a.hr2time, lang), closed: true  },
+    { day: t(a.hr1day, lang), time: t(a.hr1time, lang), closed: true  },
+    { day: t(a.hr2day, lang), time: t(a.hr2time, lang), closed: false },
     { day: t(a.hr3day, lang), time: t(a.hr3time, lang), closed: false },
     { day: t(a.hr4day, lang), time: t(a.hr4time, lang), closed: false },
-  ];
+  ].filter(h => h.day);
 
   return (
     <>

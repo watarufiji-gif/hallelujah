@@ -1,9 +1,9 @@
 "use client";
 
-import { Phone, MapPin, CalendarCheck } from "lucide-react";
+import { Phone, MapPin, ExternalLink } from "lucide-react";
 
 const GOOGLE_MAPS_NAV =
-  "https://www.google.com/maps/dir/?api=1&destination=農村かふぇ+ハレルヤ+藤沢市長後&travelmode=driving";
+  "https://www.google.com/maps/dir/?api=1&destination=長後農村かふぇ+ハレルヤ+藤沢市長後&travelmode=driving";
 
 export default function MobileNav() {
   return (
@@ -33,16 +33,16 @@ export default function MobileNav() {
           <span className="text-[10px] font-bold tracking-wide">Googleマップ</span>
         </a>
 
-        {/* 3. ホットペッパー予約 */}
+        {/* 3. Instagram */}
         <a
-          href="https://www.hotpepper.jp/strJ001342063/"
+          href="https://www.instagram.com/chogo_hareruya/"
           target="_blank"
           rel="noopener noreferrer"
           className="flex-1 flex flex-col items-center justify-center gap-0.5 py-3 active:opacity-80 transition-opacity"
-          style={{ background: "#e8720c", color: "white" }}
+          style={{ background: "#1a3a2a", color: "#a8d5b0" }}
         >
-          <CalendarCheck size={19} />
-          <span className="text-[10px] font-bold tracking-wide">ネット予約</span>
+          <ExternalLink size={19} />
+          <span className="text-[10px] font-bold tracking-wide">Instagram</span>
         </a>
 
       </div>

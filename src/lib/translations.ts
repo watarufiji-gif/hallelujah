@@ -17,7 +17,7 @@ export const translations = {
     body:     {
       ja: "毎朝仕入れる地物野菜をふんだんに。ラーメンから馬刺し、日本酒まで。いつ誰と来ても大満足できる",
       en: "Local vegetables sourced every morning. From ramen to basashi and sake — always satisfying, for everyone.",
-      ko: "매일 아침 仕入れ하는 지역 채소를 듬뿍. 라면부터 바사시, 일본주까지. 언제 누구와 와도 대만족.",
+      ko: "매일 아침 들여오는 지역 채소를 듬뿍. 라면부터 바사시, 일본주까지. 언제 누구와 와도 대만족.",
       zh: "每天早晨进货的当地蔬菜，从拉面到马刺身、日本酒，任何时候来都尽兴。",
     } as T,
     kitchen:  { ja: "「まちの台所」", en: '"The town kitchen"', ko: '"마을의 주방"', zh: '"小镇的厨房"' } as T,
@@ -27,7 +27,7 @@ export const translations = {
 
   features: {
     eyebrow:   { ja: "WHY HALLELUJAH", en: "WHY HALLELUJAH", ko: "WHY HALLELUJAH", zh: "WHY HALLELUJAH" } as T,
-    h2main:    { ja: "ハレルヤが", en: "", ko: "", zh: "" } as T,
+    h2main:    { ja: "ハレルヤが", en: "Hallelujah —", ko: "하레루야가", zh: "哈利路亚" } as T,
     h2span:    { ja: "愛される理由", en: "Why Hallelujah is Loved", ko: "하레루야가 사랑받는 이유", zh: "哈利路亚受欢迎的理由" } as T,
     i1eyebrow: { ja: "農家直営", en: "Farm-Direct", ko: "농가 직영", zh: "农家直营" } as T,
     i1title:   { ja: "毎朝届く、\n長後の恵み", en: "Morning-Fresh\nLocal Goodness", ko: "매일 아침 도착하는\n나가오의 은혜", zh: "每天早晨\n长后的馈赠" } as T,
@@ -81,7 +81,7 @@ export const translations = {
     eyebrow:      { ja: "Our Menu", en: "Our Menu", ko: "Our Menu", zh: "Our Menu" } as T,
     h1main:       { ja: "農家直営の", en: "Farm-Direct ", ko: "농가 직영의 ", zh: "农家直营的" } as T,
     h1span:       { ja: "こだわりメニュー", en: "Crafted Menu", ko: "엄선 메뉴", zh: "精心菜单" } as T,
-    subtitle:     { ja: "仕入れにより変更になる場合があります。", en: "Menu subject to change based on availability.", ko: "仕入れ 상황에 따라 변경될 수 있습니다.", zh: "菜单可能根据进货情况有所变更。" } as T,
+    subtitle:     { ja: "仕入れにより変更になる場合があります。", en: "Menu subject to change based on availability.", ko: "재고 상황에 따라 변경될 수 있습니다.", zh: "菜单可能根据进货情况有所变更。" } as T,
     lunchTab:     { ja: "ランチ", en: "Lunch", ko: "런치", zh: "午餐" } as T,
     dinnerTab:    { ja: "ディナー", en: "Dinner", ko: "디너", zh: "晚餐" } as T,
     lunchSub:     { ja: "11:30〜14:30", en: "11:30–14:30", ko: "11:30〜14:30", zh: "11:30〜14:30" } as T,
@@ -89,7 +89,7 @@ export const translations = {
     lunchH2:      { ja: "ランチメニュー", en: "Lunch Menu", ko: "런치 메뉴", zh: "午餐菜单" } as T,
     dinnerH2:     { ja: "居酒屋メニュー", en: "Izakaya Menu", ko: "이자카야 메뉴", zh: "居酒屋菜单" } as T,
     popular:      { ja: "人気", en: "Popular", ko: "인기", zh: "热门" } as T,
-    ctaAll:       { ja: "ホットペッパーで全メニューを見る・予約", en: "View Full Menu & Reserve on HotPepper", ko: "핫페퍼에서 전체 메뉴 보기·예약", zh: "在HotPepper查看完整菜单并预约" } as T,
+    ctaAll:       { ja: "お電話でご予約・お問い合わせ", en: "Call to Reserve or Enquire", ko: "전화로 예약·문의", zh: "电话预约·咨询" } as T,
   },
 
   sake: {
@@ -101,7 +101,7 @@ export const translations = {
     yen:           { ja: "円", en: "yen", ko: "엔", zh: "円" } as T,
     bestValue:     { ja: "— Best Value", en: "— Best Value", ko: "— 최고 가치", zh: "— 最划算" } as T,
     lineup:        { ja: "現在の日本酒ラインナップ", en: "Current Sake Lineup", ko: "현재 일본주 라인업", zh: "当前日本酒阵容" } as T,
-    lineupNote:    { ja: "※ラインナップは仕入れ状況により変更になる場合があります", en: "* Lineup subject to change based on availability.", ko: "※라인업은 仕入れ 상황에 따라 변경될 수 있습니다", zh: "※阵容可能根据进货情况有所变更" } as T,
+    lineupNote:    { ja: "※ラインナップは仕入れ状況により変更になる場合があります", en: "* Lineup subject to change based on availability.", ko: "※라인업은 재고 상황에 따라 변경될 수 있습니다", zh: "※阵容可能根据进货情况有所变更" } as T,
     basashiBody:   { ja: "熊本直送の馬刺しと日本酒の組み合わせ、一度体験したら忘れられません。", en: "Kumamoto-direct basashi paired with sake — once you try it, you won't forget it.", ko: "구마모토 직송의 바사시와 일본주의 조합, 한번 경험하면 잊을 수 없습니다.", zh: "熊本直送马肉刺身与日本酒的搭配，体验一次便难以忘怀。" } as T,
     pairingLabel:  { ja: "Pairing", en: "Pairing", ko: "페어링", zh: "Pairing" } as T,
     pairingH2:     { ja: "熊本直送 全9種の馬刺しと\n全国厳選日本酒の組み合わせ", en: "Kumamoto Basashi in 9 Varieties\n& Handpicked Sake from Across Japan", ko: "구마모토 직송 9종 바사시와\n전국 엄선 일본주의 조합", zh: "熊本直送全9种马肉刺身\n与全国精选日本酒的搭配" } as T,
@@ -116,7 +116,7 @@ export const translations = {
 
   access: {
     eyebrow:      { ja: "Access & Hours", en: "Access & Hours", ko: "교통 및 영업시간", zh: "交通与营业时间" } as T,
-    h1main:       { ja: "アクセス・", en: "", ko: "교통 · ", zh: "交通 · " } as T,
+    h1main:       { ja: "アクセス・", en: "Access · ", ko: "교통 · ", zh: "交通 · " } as T,
     h1span:       { ja: "営業情報", en: "Access & Hours", ko: "영업정보", zh: "营业信息" } as T,
     storeInfo:    { ja: "店舗情報", en: "Store Info", ko: "매장 정보", zh: "店铺信息" } as T,
     storeName:    { ja: "店名", en: "Name", ko: "상호명", zh: "店名" } as T,
@@ -140,14 +140,14 @@ export const translations = {
     carBody:      { ja: "お隣「ドキわくランド 長後駅前店」の駐車場が無料。駐車券をスタッフへ。", en: "Free parking at the adjacent \"Dokiwaku Land\" lot. Show ticket to staff.", ko: "옆 '도키와쿠란드' 주차장이 무료. 주차권을 직원에게.", zh: "隔壁「多喜乐园」停车场免费。停车券出示给工作人员即可。" } as T,
     reserveCta:   { ja: "ご来店の前に、お席のご予約もお気軽に。", en: "Feel free to reserve a table before your visit.", ko: "방문 전에 자리 예약도 편하게 해 주세요.", zh: "来店前随时欢迎预约座位。" } as T,
     reserveBtn:   { ja: "電話でご予約", en: "Call to Reserve", ko: "전화 예약", zh: "电话预约" } as T,
-    hr1day:       { ja: "月・火・木・金", en: "Mon·Tue·Thu·Fri", ko: "월·화·목·금", zh: "周一·二·四·五" } as T,
-    hr1time:      { ja: "11:30〜14:30 / 17:00〜22:00", en: "11:30–14:30 / 17:00–22:00", ko: "11:30〜14:30 / 17:00〜22:00", zh: "11:30〜14:30 / 17:00〜22:00" } as T,
-    hr2day:       { ja: "水曜日", en: "Wednesday", ko: "수요일", zh: "周三" } as T,
-    hr2time:      { ja: "定休日", en: "Closed", ko: "정기휴일", zh: "定期休息" } as T,
-    hr3day:       { ja: "土曜日", en: "Saturday", ko: "토요일", zh: "周六" } as T,
-    hr3time:      { ja: "11:30〜22:00（通し営業）", en: "11:30–22:00 (non-stop)", ko: "11:30〜22:00（통합 영업）", zh: "11:30〜22:00（全天营业）" } as T,
-    hr4day:       { ja: "日・祝日", en: "Sun & Holidays", ko: "일·공휴일", zh: "周日·节假日" } as T,
-    hr4time:      { ja: "11:30〜21:00", en: "11:30–21:00", ko: "11:30〜21:00", zh: "11:30〜21:00" } as T,
+    hr1day:       { ja: "月曜日", en: "Monday", ko: "월요일", zh: "周一" } as T,
+    hr1time:      { ja: "定休日", en: "Closed", ko: "정기휴일", zh: "定期休息" } as T,
+    hr2day:       { ja: "火〜日曜日", en: "Tue – Sun", ko: "화〜일요일", zh: "周二〜周日" } as T,
+    hr2time:      { ja: "11:00〜15:00 / 17:00〜22:00", en: "11:00–15:00 / 17:00–22:00", ko: "11:00〜15:00 / 17:00〜22:00", zh: "11:00〜15:00 / 17:00〜22:00" } as T,
+    hr3day:       { ja: "", en: "", ko: "", zh: "" } as T,
+    hr3time:      { ja: "", en: "", ko: "", zh: "" } as T,
+    hr4day:       { ja: "", en: "", ko: "", zh: "" } as T,
+    hr4time:      { ja: "", en: "", ko: "", zh: "" } as T,
   },
 
   lang: {
