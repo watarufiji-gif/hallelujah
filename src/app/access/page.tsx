@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { MapPin, Phone, Clock, Train, ParkingCircle, Navigation } from "lucide-react";
 import Footer from "../components/Footer";
+import PhoneReserveButton from "../components/PhoneReserveButton";
 import { useLang } from "@/context/LanguageContext";
 import { translations, t } from "@/lib/translations";
 
@@ -252,17 +253,7 @@ export default function AccessPage() {
               {t(a.reserveCta, lang)}
             </p>
             <div className="flex flex-wrap gap-4 justify-center">
-              <a
-                href="https://www.hotpepper.jp/strJ001342063/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-sun"
-              >
-                {t(a.reserveBtn, lang)}
-              </a>
-              <a href="tel:0466-45-8866" className="btn-ghost">
-                <Phone size={14} /> 0466-45-8866
-              </a>
+              <PhoneReserveButton label={t(a.reserveBtn, lang)} className="btn-sun" />
             </div>
           </FadeUp>
 

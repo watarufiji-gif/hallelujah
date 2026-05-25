@@ -21,7 +21,7 @@ export const translations = {
       zh: "每天早晨进货的当地蔬菜，从拉面到马刺身、日本酒，任何时候来都尽兴。",
     } as T,
     kitchen:  { ja: "「まちの台所」", en: '"The town kitchen"', ko: '"마을의 주방"', zh: '"小镇的厨房"' } as T,
-    reserve:  { ja: "ネット予約",    en: "Book Online",        ko: "온라인 예약",  zh: "在线预约" } as T,
+    reserve:  { ja: "電話予約",      en: "Call to Reserve",    ko: "전화 예약",    zh: "电话预约" } as T,
     viewMenu: { ja: "メニューを見る", en: "View Menu",         ko: "메뉴 보기",    zh: "查看菜单" } as T,
   },
 
@@ -139,7 +139,7 @@ export const translations = {
     carTitle:     { ja: "お車でお越しの方", en: "By Car", ko: "차로 오시는 분", zh: "驾车前来" } as T,
     carBody:      { ja: "お隣「ドキわくランド 長後駅前店」の駐車場が無料。駐車券をスタッフへ。", en: "Free parking at the adjacent \"Dokiwaku Land\" lot. Show ticket to staff.", ko: "옆 '도키와쿠란드' 주차장이 무료. 주차권을 직원에게.", zh: "隔壁「多喜乐园」停车场免费。停车券出示给工作人员即可。" } as T,
     reserveCta:   { ja: "ご来店の前に、お席のご予約もお気軽に。", en: "Feel free to reserve a table before your visit.", ko: "방문 전에 자리 예약도 편하게 해 주세요.", zh: "来店前随时欢迎预约座位。" } as T,
-    reserveBtn:   { ja: "ネット予約（ホットペッパー）", en: "Book Online (HotPepper)", ko: "온라인 예약 (핫페퍼)", zh: "在线预约（HotPepper）" } as T,
+    reserveBtn:   { ja: "電話でご予約", en: "Call to Reserve", ko: "전화 예약", zh: "电话预约" } as T,
     hr1day:       { ja: "月・火・木・金", en: "Mon·Tue·Thu·Fri", ko: "월·화·목·금", zh: "周一·二·四·五" } as T,
     hr1time:      { ja: "11:30〜14:30 / 17:00〜22:00", en: "11:30–14:30 / 17:00–22:00", ko: "11:30〜14:30 / 17:00〜22:00", zh: "11:30〜14:30 / 17:00〜22:00" } as T,
     hr2day:       { ja: "水曜日", en: "Wednesday", ko: "수요일", zh: "周三" } as T,

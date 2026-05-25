@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { Wine, Users } from "lucide-react";
 import menuData from "@/data/menu.json";
 import Footer from "../components/Footer";
+import PhoneReserveButton from "../components/PhoneReserveButton";
 import { useLang } from "@/context/LanguageContext";
 import { translations, t } from "@/lib/translations";
 
@@ -159,14 +160,7 @@ export default function SakePage() {
             <p className="text-white/50 text-sm leading-relaxed">
               {t(s.basashiBody, lang)}
             </p>
-            <a
-              href="https://www.hotpepper.jp/strJ001342063/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-sun shrink-0"
-            >
-              {t(s.reserveNow, lang)}
-            </a>
+            <PhoneReserveButton label={t(s.reserveNow, lang)} className="btn-sun shrink-0" />
           </div>
 
           {/* ─── 日本酒リスト ─── */}
@@ -213,14 +207,7 @@ export default function SakePage() {
             <p className="text-white/50 text-base leading-relaxed mb-8 max-w-lg">
               {t(s.pairingBody, lang)}
             </p>
-            <a
-              href="https://www.hotpepper.jp/strJ001342063/"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-sun"
-            >
-              {t(s.reserveTonight, lang)}
-            </a>
+            <PhoneReserveButton label={t(s.reserveTonight, lang)} className="btn-sun" />
           </motion.div>
         </div>
       </section>

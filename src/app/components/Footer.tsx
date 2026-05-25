@@ -57,8 +57,8 @@ export default function Footer() {
               <a href="tel:0466-45-8866" className="flex items-center gap-2 text-white/50 hover:text-[#f59339] transition-colors">
                 <Phone size={14} /> 0466-45-8866
               </a>
-              <a href="https://www.hotpepper.jp/strJ001342063/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/50 hover:text-[#f59339] transition-colors">
-                🍽️ {t(f.hotpepper, lang)}
+              <a href="tel:0466-45-8866" className="flex items-center gap-2 text-white/50 hover:text-[#f59339] transition-colors">
+                <Phone size={14} /> 0466-45-8866
               </a>
               <a href="https://www.instagram.com/chogo_hareruya/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 text-white/50 hover:text-[#f59339] transition-colors">
                 📸 {t(f.instagramLabel, lang)}

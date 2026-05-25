@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, CalendarCheck, Leaf } from "lucide-react";
+import { ArrowRight, Leaf } from "lucide-react";
 import { useLang } from "@/context/LanguageContext";
 import { translations, t } from "@/lib/translations";
+import PhoneReserveButton from "./PhoneReserveButton";
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 const rise = (d = 0) => ({
@@ -104,15 +105,7 @@ export default function Hero() {
 
         {/* CTA */}
         <motion.div {...rise(0.46)} className="flex flex-wrap gap-4 justify-center">
-          <a
-            href="https://www.hotpepper.jp/strJ001342063/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-sun"
-          >
-            <CalendarCheck size={15} strokeWidth={1.5} />
-            {t(h.reserve, lang)}
-          </a>
+          <PhoneReserveButton label={t(h.reserve, lang)} className="btn-sun" />
           <Link
             href="/menu"
             className="btn-ghost"
