@@ -2,14 +2,26 @@
 
 import { motion } from "framer-motion";
 import { PenLine, Leaf } from "lucide-react";
-import boardData from "@/data/board.json";
+import { useEffect, useState } from "react";
+import fallback from "@/data/board.json";
 import { useLang } from "@/context/LanguageContext";
 import { translations, t } from "@/lib/translations";
+
+type BoardData = { date: string; message: string; veggie: string; author: string };
 
 export default function ChalkboardSection() {
   const { lang } = useLang();
   const c = translations.chalk;
-  const { date, message, veggie, author } = boardData;
+  const [board, setBoard] = useState<BoardData>(fallback);
+
+  useEffect(() => {
+    fetch("/api/board")
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data && data.date) setBoard(data); })
+      .catch(() => {});
+  }, []);
+
+  const { date, message, veggie, author } = board;
 
   return (
     <section className="py-10 sm:py-14 bg-[#FAF6F0]">
