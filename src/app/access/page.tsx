@@ -1,11 +1,19 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import Script from "next/script";
 import { MapPin, Phone, Clock, Train, ParkingCircle, Navigation } from "lucide-react";
 import Footer from "../components/Footer";
 import PhoneReserveButton from "../components/PhoneReserveButton";
 import { useLang } from "@/context/LanguageContext";
 import { translations, t } from "@/lib/translations";
+
+declare global {
+  interface Window {
+    instgrm?: { Embeds: { process(): void } };
+  }
+}
 
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
@@ -33,6 +41,19 @@ export default function AccessPage() {
   const { lang } = useLang();
   const a = translations.access;
 
+  const [calendarUrl, setCalendarUrl] = useState("");
+
+  useEffect(() => {
+    fetch("/api/board")
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data?.calendar_instagram_url) setCalendarUrl(data.calendar_instagram_url); })
+      .catch(() => {});
+  }, []);
+
+  useEffect(() => {
+    if (calendarUrl && window.instgrm) window.instgrm.Embeds.process();
+  }, [calendarUrl]);
+
   const HOURS = [
     { day: t(a.hr1day, lang), time: t(a.hr1time, lang), closed: true  },
     { day: t(a.hr2day, lang), time: t(a.hr2time, lang), closed: false },
@@ -42,6 +63,12 @@ export default function AccessPage() {
 
   return (
     <>
+      <Script
+        src="https://www.instagram.com/embed.js"
+        strategy="lazyOnload"
+        onLoad={() => window.instgrm?.Embeds.process()}
+      />
+
       {/* ─── ページヒーロー ─── */}
       <div className="pt-20 md:pt-24" style={{ background: "#ffffff", borderBottom: "1px solid #e5e5e5" }}>
         <div className="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
@@ -143,7 +170,7 @@ export default function AccessPage() {
 
             <FadeUp delay={0.1}>
               <div
-                className="p-6 shadow-md h-full"
+                className="p-6 shadow-md"
                 style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}
               >
                 <h3 className="font-serif text-lg font-bold flex items-center gap-2 mb-5" style={{ color: "#1a1a1a" }}>
@@ -166,6 +193,32 @@ export default function AccessPage() {
                     </div>
                   ))}
                 </div>
+
+                {calendarUrl && (
+                  <div className="mt-6 pt-5" style={{ borderTop: "1px solid #e5e5e5" }}>
+                    <p className="text-[10px] font-bold tracking-[0.28em] uppercase mb-3" style={{ color: "#999999" }}>
+                      今月の営業カレンダー
+                    </p>
+                    <div className="overflow-hidden">
+                      <blockquote
+                        key={calendarUrl}
+                        className="instagram-media"
+                        data-instgrm-permalink={`${calendarUrl}?utm_source=ig_embed`}
+                        data-instgrm-version="14"
+                        style={{ margin: "0", maxWidth: "100%", minWidth: "0", width: "100%" }}
+                      >
+                        <a
+                          href={calendarUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          style={{ color: "#1a3a2a", fontSize: "0.75rem" }}
+                        >
+                          Instagramで見る
+                        </a>
+                      </blockquote>
+                    </div>
+                  </div>
+                )}
               </div>
             </FadeUp>
           </div>
