@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import Script from "next/script";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
-import { INSTAGRAM_POSTS } from "@/data/instagram-posts";
+import { INSTAGRAM_POST } from "@/data/instagram-posts";
 
 declare global {
   interface Window {
@@ -16,7 +16,6 @@ const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export default function InstagramEmbedSection() {
   useEffect(() => {
-    // embed.js がすでにロード済みの場合（ページ再訪時など）再処理
     if (window.instgrm) {
       window.instgrm.Embeds.process();
     }
@@ -30,7 +29,7 @@ export default function InstagramEmbedSection() {
         onLoad={() => window.instgrm?.Embeds.process()}
       />
 
-      <div className="max-w-6xl mx-auto px-6 sm:px-10">
+      <div className="max-w-2xl mx-auto px-6 sm:px-10">
 
         {/* ヘッダー */}
         <motion.div
@@ -38,7 +37,7 @@ export default function InstagramEmbedSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-10 sm:mb-14"
+          className="flex flex-col sm:flex-row items-start sm:items-end justify-between gap-6 mb-10"
         >
           <div>
             <p className="sec-eyebrow mb-4">Instagram</p>
@@ -50,7 +49,7 @@ export default function InstagramEmbedSection() {
             href="https://www.instagram.com/chogo_hareruya/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 font-bold text-sm shrink-0 group hover:opacity-60 transition-opacity"
+            className="inline-flex items-center gap-2 font-bold text-sm shrink-0 hover:opacity-60 transition-opacity"
             style={{ color: "#1a3a2a" }}
           >
             @chogo_hareruya をフォロー
@@ -58,42 +57,29 @@ export default function InstagramEmbedSection() {
           </a>
         </motion.div>
 
-        {/* 投稿グリッド — モバイルは横スクロール、sm以上はグリッド */}
-        <div className="flex gap-4 overflow-x-auto pb-2 -mx-6 px-6 sm:mx-0 sm:px-0 sm:grid sm:grid-cols-2 lg:grid-cols-4 sm:overflow-visible">
-          {INSTAGRAM_POSTS.map((url, i) => (
-            <motion.div
-              key={url}
-              initial={{ opacity: 0, y: 16 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-30px" }}
-              transition={{ duration: 0.5, delay: i * 0.07, ease: EASE }}
-              className="min-w-[280px] sm:min-w-0 flex-shrink-0 sm:flex-shrink"
+        {/* 1投稿・中央寄せ */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: EASE }}
+        >
+          <blockquote
+            className="instagram-media"
+            data-instgrm-permalink={`${INSTAGRAM_POST}?utm_source=ig_embed`}
+            data-instgrm-version="14"
+            style={{ margin: "0 auto", maxWidth: "540px", minWidth: "326px", width: "100%" }}
+          >
+            <a
+              href={INSTAGRAM_POST}
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{ color: "#1a3a2a", fontSize: "0.75rem" }}
             >
-              <blockquote
-                className="instagram-media"
-                data-instgrm-permalink={`${url}?utm_source=ig_embed`}
-                data-instgrm-version="14"
-                style={{
-                  margin: "0",
-                  maxWidth: "100%",
-                  minWidth: "0",
-                  width: "100% !important",
-                  border: "1px solid #e5e5e5",
-                  borderRadius: "0",
-                }}
-              >
-                <a
-                  href={url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  style={{ color: "#1a3a2a", fontSize: "0.75rem" }}
-                >
-                  Instagramで見る
-                </a>
-              </blockquote>
-            </motion.div>
-          ))}
-        </div>
+              Instagramで見る
+            </a>
+          </blockquote>
+        </motion.div>
 
       </div>
     </section>
