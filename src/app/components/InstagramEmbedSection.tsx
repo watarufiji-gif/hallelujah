@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Script from "next/script";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -15,11 +15,24 @@ declare global {
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 
 export default function InstagramEmbedSection() {
+  const [postUrl, setPostUrl] = useState(INSTAGRAM_POST);
+
+  // スプレッドシートからURLを取得（黒板と同じAPIから）
+  useEffect(() => {
+    fetch("/api/board")
+      .then(r => r.ok ? r.json() : null)
+      .then(data => {
+        if (data?.instagram_url) setPostUrl(data.instagram_url);
+      })
+      .catch(() => {});
+  }, []);
+
+  // URL変更後にInstagram埋め込みを再処理
   useEffect(() => {
     if (window.instgrm) {
       window.instgrm.Embeds.process();
     }
-  }, []);
+  }, [postUrl]);
 
   return (
     <section id="instagram" className="py-16 sm:py-24" style={{ background: "#f0f5f2" }}>
@@ -65,13 +78,14 @@ export default function InstagramEmbedSection() {
           transition={{ duration: 0.6, ease: EASE }}
         >
           <blockquote
+            key={postUrl}
             className="instagram-media"
-            data-instgrm-permalink={`${INSTAGRAM_POST}?utm_source=ig_embed`}
+            data-instgrm-permalink={`${postUrl}?utm_source=ig_embed`}
             data-instgrm-version="14"
             style={{ margin: "0 auto", maxWidth: "540px", minWidth: "326px", width: "100%" }}
           >
             <a
-              href={INSTAGRAM_POST}
+              href={postUrl}
               target="_blank"
               rel="noopener noreferrer"
               style={{ color: "#1a3a2a", fontSize: "0.75rem" }}
