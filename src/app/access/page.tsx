@@ -140,11 +140,38 @@ export default function AccessPage() {
             </div>
           </FadeUp>
 
-          {/* ━━━ 営業時間＋マップ（左） ／ カレンダー（右）━━━ */}
+          {/* ━━━ カレンダー（左） ／ 営業時間＋マップ（右）━━━ */}
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
-            {/* 左：営業時間 → マップ（上端・下端を右カラムに揃える） */}
-            <FadeUp className="flex flex-col gap-4 h-full">
+            {/* 左：営業カレンダー */}
+            {calendarUrl ? (
+              <FadeUp className="h-full">
+                <div className="flex flex-col h-full shadow-md overflow-hidden" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
+                  <div className="px-6 py-4 shrink-0 flex items-center gap-2" style={{ borderBottom: "1px solid #e5e5e5" }}>
+                    <CalendarDays size={17} className="text-[#2d5a3d]" />
+                    <p className="font-serif text-lg font-bold" style={{ color: "#1a1a1a" }}>今月の営業カレンダー</p>
+                  </div>
+                  <div className="flex-1 overflow-y-auto min-h-0">
+                    <blockquote
+                      key={calendarUrl}
+                      className="instagram-media"
+                      data-instgrm-permalink={`${calendarUrl}?utm_source=ig_embed`}
+                      data-instgrm-version="14"
+                      style={{ margin: "0", maxWidth: "100%", minWidth: "0", width: "100%" }}
+                    >
+                      <a href={calendarUrl} target="_blank" rel="noopener noreferrer" style={{ color: "#1a3a2a", fontSize: "0.75rem" }}>
+                        Instagramで見る
+                      </a>
+                    </blockquote>
+                  </div>
+                </div>
+              </FadeUp>
+            ) : (
+              <div />
+            )}
+
+            {/* 右：営業時間 → マップ */}
+            <FadeUp delay={0.1} className="flex flex-col gap-4 h-full">
 
               {/* 営業時間 */}
               <div className="p-6 shadow-md shrink-0" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
@@ -191,34 +218,6 @@ export default function AccessPage() {
               </div>
 
             </FadeUp>
-
-            {/* 右：営業カレンダー（左カラムと上端・下端を一致させる） */}
-            {calendarUrl ? (
-              <FadeUp delay={0.1} className="h-full">
-                <div className="flex flex-col h-full shadow-md overflow-hidden" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
-                  <div className="px-6 py-4 shrink-0 flex items-center gap-2" style={{ borderBottom: "1px solid #e5e5e5" }}>
-                    <CalendarDays size={17} className="text-[#2d5a3d]" />
-                    <p className="font-serif text-lg font-bold" style={{ color: "#1a1a1a" }}>今月の営業カレンダー</p>
-                  </div>
-                  <div className="flex-1 overflow-y-auto min-h-0">
-                    <blockquote
-                      key={calendarUrl}
-                      className="instagram-media"
-                      data-instgrm-permalink={`${calendarUrl}?utm_source=ig_embed`}
-                      data-instgrm-version="14"
-                      style={{ margin: "0", maxWidth: "100%", minWidth: "0", width: "100%" }}
-                    >
-                      <a href={calendarUrl} target="_blank" rel="noopener noreferrer" style={{ color: "#1a3a2a", fontSize: "0.75rem" }}>
-                        Instagramで見る
-                      </a>
-                    </blockquote>
-                  </div>
-                </div>
-              </FadeUp>
-            ) : (
-              /* カレンダー未設定時は左カラムがフル幅になるので何も置かない */
-              <div />
-            )}
 
           </div>
 
