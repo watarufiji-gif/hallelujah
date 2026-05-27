@@ -140,79 +140,87 @@ export default function AccessPage() {
             </div>
           </FadeUp>
 
-          {/* ━━━ 営業時間 ━━━ */}
-          <FadeUp>
-            <div className="p-6 shadow-md" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
-              <h3 className="font-serif text-lg font-bold flex items-center gap-2 mb-4" style={{ color: "#1a1a1a" }}>
-                <Clock size={17} className="text-[#2d5a3d]" /> {t(a.hoursTitle, lang)}
-              </h3>
-              <div className="space-y-1">
-                {HOURS.map(h => (
-                  <div
-                    key={h.day}
-                    className={`flex justify-between items-center py-2 border-b last:border-0 ${h.closed ? "opacity-40" : ""}`}
-                    style={{ borderColor: "rgba(161,120,60,0.12)" }}
-                  >
-                    <span className="text-sm font-semibold" style={{ color: "#1a1a1a" }}>{h.day}</span>
-                    <span className="text-sm font-bold" style={{ color: h.closed ? "#ef4444" : "#2d5a3d" }}>
-                      {h.time}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </FadeUp>
+          {/* ━━━ 営業時間＋マップ（左） ／ カレンダー（右）━━━ */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
 
-          {/* ━━━ 今月の営業カレンダー ━━━ */}
-          {calendarUrl && (
-            <FadeUp>
-              <div className="shadow-md overflow-hidden" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
-                <div className="px-6 py-4 flex items-center gap-2" style={{ borderBottom: "1px solid #e5e5e5" }}>
-                  <CalendarDays size={17} className="text-[#2d5a3d]" />
-                  <p className="font-serif text-lg font-bold" style={{ color: "#1a1a1a" }}>今月の営業カレンダー</p>
-                </div>
-                <div style={{ maxHeight: "600px", overflowY: "auto" }}>
-                  <blockquote
-                    key={calendarUrl}
-                    className="instagram-media"
-                    data-instgrm-permalink={`${calendarUrl}?utm_source=ig_embed`}
-                    data-instgrm-version="14"
-                    style={{ margin: "0", maxWidth: "100%", minWidth: "0", width: "100%" }}
-                  >
-                    <a href={calendarUrl} target="_blank" rel="noopener noreferrer" style={{ color: "#1a3a2a", fontSize: "0.75rem" }}>
-                      Instagramで見る
-                    </a>
-                  </blockquote>
+            {/* 左：営業時間 → マップ（上端・下端を右カラムに揃える） */}
+            <FadeUp className="flex flex-col gap-4 h-full">
+
+              {/* 営業時間 */}
+              <div className="p-6 shadow-md shrink-0" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
+                <h3 className="font-serif text-lg font-bold flex items-center gap-2 mb-4" style={{ color: "#1a1a1a" }}>
+                  <Clock size={17} className="text-[#2d5a3d]" /> {t(a.hoursTitle, lang)}
+                </h3>
+                <div className="space-y-1">
+                  {HOURS.map(h => (
+                    <div
+                      key={h.day}
+                      className={`flex justify-between items-center py-2 border-b last:border-0 ${h.closed ? "opacity-40" : ""}`}
+                      style={{ borderColor: "rgba(161,120,60,0.12)" }}
+                    >
+                      <span className="text-sm font-semibold" style={{ color: "#1a1a1a" }}>{h.day}</span>
+                      <span className="text-sm font-bold" style={{ color: h.closed ? "#ef4444" : "#2d5a3d" }}>
+                        {h.time}
+                      </span>
+                    </div>
+                  ))}
                 </div>
               </div>
+
+              {/* マップ（残り高さを flex-1 で埋める） */}
+              <div className="flex flex-col flex-1 min-h-0 overflow-hidden shadow-xl" style={{ border: "1px solid #e5e5e5" }}>
+                <iframe
+                  src={MAP_EMBED}
+                  width="100%"
+                  style={{ border: 0, display: "block", flex: 1, minHeight: "200px" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="長後農村かふぇ ハレルヤ の地図"
+                />
+                <a
+                  href={MAP_NAV}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 py-3 font-bold text-sm shrink-0 hover:opacity-90 transition-opacity"
+                  style={{ background: "#4285F4", color: "white" }}
+                >
+                  <Navigation size={16} />
+                  {t(a.navBtn, lang)}
+                </a>
+              </div>
+
             </FadeUp>
-          )}
 
-          {/* ━━━ 地図 ━━━ */}
-          <FadeUp>
-            <div className="flex flex-col overflow-hidden shadow-xl" style={{ border: "1px solid #e5e5e5" }}>
-              <iframe
-                src={MAP_EMBED}
-                width="100%"
-                height="360"
-                style={{ border: 0, display: "block" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="長後農村かふぇ ハレルヤ の地図"
-              />
-              <a
-                href={MAP_NAV}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 py-3 font-bold text-sm hover:opacity-90 transition-opacity"
-                style={{ background: "#4285F4", color: "white" }}
-              >
-                <Navigation size={16} />
-                {t(a.navBtn, lang)}
-              </a>
-            </div>
-          </FadeUp>
+            {/* 右：営業カレンダー（左カラムと上端・下端を一致させる） */}
+            {calendarUrl ? (
+              <FadeUp delay={0.1} className="h-full">
+                <div className="flex flex-col h-full shadow-md overflow-hidden" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
+                  <div className="px-6 py-4 shrink-0 flex items-center gap-2" style={{ borderBottom: "1px solid #e5e5e5" }}>
+                    <CalendarDays size={17} className="text-[#2d5a3d]" />
+                    <p className="font-serif text-lg font-bold" style={{ color: "#1a1a1a" }}>今月の営業カレンダー</p>
+                  </div>
+                  <div className="flex-1 overflow-y-auto min-h-0">
+                    <blockquote
+                      key={calendarUrl}
+                      className="instagram-media"
+                      data-instgrm-permalink={`${calendarUrl}?utm_source=ig_embed`}
+                      data-instgrm-version="14"
+                      style={{ margin: "0", maxWidth: "100%", minWidth: "0", width: "100%" }}
+                    >
+                      <a href={calendarUrl} target="_blank" rel="noopener noreferrer" style={{ color: "#1a3a2a", fontSize: "0.75rem" }}>
+                        Instagramで見る
+                      </a>
+                    </blockquote>
+                  </div>
+                </div>
+              </FadeUp>
+            ) : (
+              /* カレンダー未設定時は左カラムがフル幅になるので何も置かない */
+              <div />
+            )}
+
+          </div>
 
           {/* ━━━ 駐車場アラート（上下真ん中・最重要）━━━ */}
           <FadeUp>
