@@ -5,4 +5,4 @@
 //  2. 投稿右上の「…」→「リンクをコピー」
 //  3. 下のURLを新しいURLに貼り替えるだけ
 
-export const INSTAGRAM_POST = "https://www.instagram.com/p/DX4QIZOifpy/";
+export const INSTAGRAM_POST = "https://www.instagram.com/p/DXPFvuJCRrr/?img_index=1";
