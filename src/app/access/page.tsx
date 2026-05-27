@@ -140,64 +140,38 @@ export default function AccessPage() {
             </div>
           </FadeUp>
 
-          {/* ━━━ 営業時間＋マップ（左） ／ カレンダー（右）━━━ */}
-          <div className={`grid grid-cols-1 gap-8 items-stretch ${calendarUrl ? "lg:grid-cols-2" : ""}`}>
-
-            {/* 左カラム：営業時間 → マップ */}
-            <FadeUp className="flex flex-col gap-4 h-full">
-              <div className="p-6 shadow-md" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
-                <h3 className="font-serif text-lg font-bold flex items-center gap-2 mb-5" style={{ color: "#1a1a1a" }}>
-                  <Clock size={17} className="text-[#2d5a3d]" /> {t(a.hoursTitle, lang)}
-                </h3>
-                <div className="space-y-2">
-                  {HOURS.map(h => (
-                    <div
-                      key={h.day}
-                      className={`flex justify-between items-center py-2.5 border-b last:border-0 ${h.closed ? "opacity-40" : ""}`}
-                      style={{ borderColor: "rgba(161,120,60,0.12)" }}
-                    >
-                      <span className="text-sm font-semibold" style={{ color: "#1a1a1a" }}>{h.day}</span>
-                      <span className="text-sm font-bold" style={{ color: h.closed ? "#ef4444" : "#2d5a3d" }}>
-                        {h.time}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex flex-col flex-1 gap-0 overflow-hidden shadow-xl" style={{ border: "1px solid #e5e5e5" }}>
-                <iframe
-                  src={MAP_EMBED}
-                  width="100%"
-                  height="100%"
-                  className="flex-1 min-h-[260px]"
-                  style={{ border: 0, display: "block" }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="長後農村かふぇ ハレルヤ の地図"
-                />
-                <a
-                  href={MAP_NAV}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2 py-3 font-bold text-sm shrink-0 hover:opacity-90 transition-opacity"
-                  style={{ background: "#4285F4", color: "white" }}
-                >
-                  <Navigation size={16} />
-                  {t(a.navBtn, lang)}
-                </a>
-              </div>
-            </FadeUp>
-
-            {/* 右カラム：営業カレンダー（下端を左カラムに揃える） */}
-            {calendarUrl && (
-              <FadeUp delay={0.1} className="h-full">
-                <div className="shadow-md h-full overflow-hidden" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
-                  <div className="px-6 py-4 flex items-center gap-2" style={{ borderBottom: "1px solid #e5e5e5" }}>
-                    <CalendarDays size={17} className="text-[#2d5a3d]" />
-                    <p className="font-serif text-lg font-bold" style={{ color: "#1a1a1a" }}>今月の営業カレンダー</p>
+          {/* ━━━ 営業時間 ━━━ */}
+          <FadeUp>
+            <div className="p-6 shadow-md" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
+              <h3 className="font-serif text-lg font-bold flex items-center gap-2 mb-4" style={{ color: "#1a1a1a" }}>
+                <Clock size={17} className="text-[#2d5a3d]" /> {t(a.hoursTitle, lang)}
+              </h3>
+              <div className="space-y-1">
+                {HOURS.map(h => (
+                  <div
+                    key={h.day}
+                    className={`flex justify-between items-center py-2 border-b last:border-0 ${h.closed ? "opacity-40" : ""}`}
+                    style={{ borderColor: "rgba(161,120,60,0.12)" }}
+                  >
+                    <span className="text-sm font-semibold" style={{ color: "#1a1a1a" }}>{h.day}</span>
+                    <span className="text-sm font-bold" style={{ color: h.closed ? "#ef4444" : "#2d5a3d" }}>
+                      {h.time}
+                    </span>
                   </div>
+                ))}
+              </div>
+            </div>
+          </FadeUp>
+
+          {/* ━━━ 今月の営業カレンダー ━━━ */}
+          {calendarUrl && (
+            <FadeUp>
+              <div className="shadow-md overflow-hidden" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
+                <div className="px-6 py-4 flex items-center gap-2" style={{ borderBottom: "1px solid #e5e5e5" }}>
+                  <CalendarDays size={17} className="text-[#2d5a3d]" />
+                  <p className="font-serif text-lg font-bold" style={{ color: "#1a1a1a" }}>今月の営業カレンダー</p>
+                </div>
+                <div style={{ maxHeight: "600px", overflowY: "auto" }}>
                   <blockquote
                     key={calendarUrl}
                     className="instagram-media"
@@ -210,9 +184,35 @@ export default function AccessPage() {
                     </a>
                   </blockquote>
                 </div>
-              </FadeUp>
-            )}
-          </div>
+              </div>
+            </FadeUp>
+          )}
+
+          {/* ━━━ 地図 ━━━ */}
+          <FadeUp>
+            <div className="flex flex-col overflow-hidden shadow-xl" style={{ border: "1px solid #e5e5e5" }}>
+              <iframe
+                src={MAP_EMBED}
+                width="100%"
+                height="360"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="長後農村かふぇ ハレルヤ の地図"
+              />
+              <a
+                href={MAP_NAV}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 py-3 font-bold text-sm hover:opacity-90 transition-opacity"
+                style={{ background: "#4285F4", color: "white" }}
+              >
+                <Navigation size={16} />
+                {t(a.navBtn, lang)}
+              </a>
+            </div>
+          </FadeUp>
 
           {/* ━━━ 駐車場アラート（上下真ん中・最重要）━━━ */}
           <FadeUp>
