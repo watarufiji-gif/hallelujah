@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import Script from "next/script";
-import { MapPin, Phone, Clock, Train, ParkingCircle, Navigation } from "lucide-react";
+import { MapPin, Phone, Clock, Train, ParkingCircle, Navigation, CalendarDays } from "lucide-react";
 import Footer from "../components/Footer";
 import PhoneReserveButton from "../components/PhoneReserveButton";
 import { useLang } from "@/context/LanguageContext";
@@ -140,39 +140,11 @@ export default function AccessPage() {
             </div>
           </FadeUp>
 
-          {/* ━━━ 地図 ＆ 営業時間（横並び）━━━ */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          {/* ━━━ 営業時間 ＆ カレンダー（横並び）━━━ */}
+          <div className={`grid grid-cols-1 gap-8 items-stretch ${calendarUrl ? "lg:grid-cols-2" : ""}`}>
 
-            <FadeUp className="flex flex-col gap-4">
-              <div className="overflow-hidden shadow-xl" style={{ border: "1px solid rgba(161,120,60,0.15)" }}>
-                <iframe
-                  src={MAP_EMBED}
-                  width="100%"
-                  height="340"
-                  style={{ border: 0, display: "block" }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  title="農村かふぇ ハレルヤ の地図"
-                />
-              </div>
-              <a
-                href={MAP_NAV}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center justify-center gap-2 py-3 font-bold text-sm transition-colors hover:opacity-90"
-                style={{ background: "#4285F4", color: "white" }}
-              >
-                <Navigation size={16} />
-                {t(a.navBtn, lang)}
-              </a>
-            </FadeUp>
-
-            <FadeUp delay={0.1}>
-              <div
-                className="p-6 shadow-md"
-                style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}
-              >
+            <FadeUp>
+              <div className="p-6 shadow-md h-full" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
                 <h3 className="font-serif text-lg font-bold flex items-center gap-2 mb-5" style={{ color: "#1a1a1a" }}>
                   <Clock size={17} className="text-[#2d5a3d]" /> {t(a.hoursTitle, lang)}
                 </h3>
@@ -184,44 +156,63 @@ export default function AccessPage() {
                       style={{ borderColor: "rgba(161,120,60,0.12)" }}
                     >
                       <span className="text-sm font-semibold" style={{ color: "#1a1a1a" }}>{h.day}</span>
-                      <span
-                        className="text-sm font-bold"
-                        style={{ color: h.closed ? "#ef4444" : "#2d5a3d" }}
-                      >
+                      <span className="text-sm font-bold" style={{ color: h.closed ? "#ef4444" : "#2d5a3d" }}>
                         {h.time}
                       </span>
                     </div>
                   ))}
                 </div>
-
-                {calendarUrl && (
-                  <div className="mt-6 pt-5" style={{ borderTop: "1px solid #e5e5e5" }}>
-                    <p className="text-[10px] font-bold tracking-[0.28em] uppercase mb-3" style={{ color: "#999999" }}>
-                      今月の営業カレンダー
-                    </p>
-                    <div className="overflow-hidden">
-                      <blockquote
-                        key={calendarUrl}
-                        className="instagram-media"
-                        data-instgrm-permalink={`${calendarUrl}?utm_source=ig_embed`}
-                        data-instgrm-version="14"
-                        style={{ margin: "0", maxWidth: "100%", minWidth: "0", width: "100%" }}
-                      >
-                        <a
-                          href={calendarUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          style={{ color: "#1a3a2a", fontSize: "0.75rem" }}
-                        >
-                          Instagramで見る
-                        </a>
-                      </blockquote>
-                    </div>
-                  </div>
-                )}
               </div>
             </FadeUp>
+
+            {calendarUrl && (
+              <FadeUp delay={0.1}>
+                <div className="shadow-md h-full overflow-hidden" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
+                  <div className="px-6 py-4 flex items-center gap-2" style={{ borderBottom: "1px solid #e5e5e5" }}>
+                    <CalendarDays size={17} className="text-[#2d5a3d]" />
+                    <p className="font-serif text-lg font-bold" style={{ color: "#1a1a1a" }}>今月の営業カレンダー</p>
+                  </div>
+                  <blockquote
+                    key={calendarUrl}
+                    className="instagram-media"
+                    data-instgrm-permalink={`${calendarUrl}?utm_source=ig_embed`}
+                    data-instgrm-version="14"
+                    style={{ margin: "0", maxWidth: "100%", minWidth: "0", width: "100%" }}
+                  >
+                    <a href={calendarUrl} target="_blank" rel="noopener noreferrer" style={{ color: "#1a3a2a", fontSize: "0.75rem" }}>
+                      Instagramで見る
+                    </a>
+                  </blockquote>
+                </div>
+              </FadeUp>
+            )}
           </div>
+
+          {/* ━━━ 地図（フル幅）━━━ */}
+          <FadeUp className="flex flex-col gap-4">
+            <div className="overflow-hidden shadow-xl" style={{ border: "1px solid #e5e5e5" }}>
+              <iframe
+                src={MAP_EMBED}
+                width="100%"
+                height="360"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                title="長後農村かふぇ ハレルヤ の地図"
+              />
+            </div>
+            <a
+              href={MAP_NAV}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center justify-center gap-2 py-3 font-bold text-sm transition-colors hover:opacity-90"
+              style={{ background: "#4285F4", color: "white" }}
+            >
+              <Navigation size={16} />
+              {t(a.navBtn, lang)}
+            </a>
+          </FadeUp>
 
           {/* ━━━ 駐車場アラート（上下真ん中・最重要）━━━ */}
           <FadeUp>
