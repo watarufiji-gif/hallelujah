@@ -140,11 +140,12 @@ export default function AccessPage() {
             </div>
           </FadeUp>
 
-          {/* ━━━ 営業時間 ＆ カレンダー（横並び）━━━ */}
+          {/* ━━━ 営業時間＋マップ（左） ／ カレンダー（右）━━━ */}
           <div className={`grid grid-cols-1 gap-8 items-stretch ${calendarUrl ? "lg:grid-cols-2" : ""}`}>
 
-            <FadeUp>
-              <div className="p-6 shadow-md h-full" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
+            {/* 左カラム：営業時間 → マップ */}
+            <FadeUp className="flex flex-col gap-4 h-full">
+              <div className="p-6 shadow-md" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
                 <h3 className="font-serif text-lg font-bold flex items-center gap-2 mb-5" style={{ color: "#1a1a1a" }}>
                   <Clock size={17} className="text-[#2d5a3d]" /> {t(a.hoursTitle, lang)}
                 </h3>
@@ -163,10 +164,35 @@ export default function AccessPage() {
                   ))}
                 </div>
               </div>
+
+              <div className="flex flex-col flex-1 gap-0 overflow-hidden shadow-xl" style={{ border: "1px solid #e5e5e5" }}>
+                <iframe
+                  src={MAP_EMBED}
+                  width="100%"
+                  height="100%"
+                  className="flex-1 min-h-[260px]"
+                  style={{ border: 0, display: "block" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  title="長後農村かふぇ ハレルヤ の地図"
+                />
+                <a
+                  href={MAP_NAV}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2 py-3 font-bold text-sm shrink-0 hover:opacity-90 transition-opacity"
+                  style={{ background: "#4285F4", color: "white" }}
+                >
+                  <Navigation size={16} />
+                  {t(a.navBtn, lang)}
+                </a>
+              </div>
             </FadeUp>
 
+            {/* 右カラム：営業カレンダー（下端を左カラムに揃える） */}
             {calendarUrl && (
-              <FadeUp delay={0.1}>
+              <FadeUp delay={0.1} className="h-full">
                 <div className="shadow-md h-full overflow-hidden" style={{ background: "#ffffff", border: "1px solid #e5e5e5" }}>
                   <div className="px-6 py-4 flex items-center gap-2" style={{ borderBottom: "1px solid #e5e5e5" }}>
                     <CalendarDays size={17} className="text-[#2d5a3d]" />
@@ -187,32 +213,6 @@ export default function AccessPage() {
               </FadeUp>
             )}
           </div>
-
-          {/* ━━━ 地図（フル幅）━━━ */}
-          <FadeUp className="flex flex-col gap-4">
-            <div className="overflow-hidden shadow-xl" style={{ border: "1px solid #e5e5e5" }}>
-              <iframe
-                src={MAP_EMBED}
-                width="100%"
-                height="360"
-                style={{ border: 0, display: "block" }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-                title="長後農村かふぇ ハレルヤ の地図"
-              />
-            </div>
-            <a
-              href={MAP_NAV}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 py-3 font-bold text-sm transition-colors hover:opacity-90"
-              style={{ background: "#4285F4", color: "white" }}
-            >
-              <Navigation size={16} />
-              {t(a.navBtn, lang)}
-            </a>
-          </FadeUp>
 
           {/* ━━━ 駐車場アラート（上下真ん中・最重要）━━━ */}
           <FadeUp>
