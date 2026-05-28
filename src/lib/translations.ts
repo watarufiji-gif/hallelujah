@@ -7,7 +7,7 @@ export const translations = {
     home:   { ja: "トップ",   en: "Home",   ko: "홈",    zh: "首页" } as T,
     menu:   { ja: "メニュー", en: "Menu",   ko: "메뉴",  zh: "菜单" } as T,
     sake:   { ja: "日本酒",   en: "Sake",   ko: "사케",  zh: "日本酒" } as T,
-    access: { ja: "アクセス", en: "Access", ko: "안내",  zh: "交通" } as T,
+    access: { ja: "アクセス・営業情報", en: "Access & Hours", ko: "안내·영업정보",  zh: "交通·营业信息" } as T,
   },
 
   hero: {
