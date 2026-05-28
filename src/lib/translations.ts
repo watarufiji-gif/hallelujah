@@ -55,7 +55,12 @@ export const translations = {
     tag1:       { ja: "毎朝仕入れ", en: "Daily fresh", ko: "매일 직송", zh: "每日进货" } as T,
     tag2:       { ja: "農家直送", en: "Farm-direct", ko: "농가 직송", zh: "农家直送" } as T,
     tag3:       { ja: "今が旬", en: "In season", ko: "지금이 제철", zh: "当季食材" } as T,
-    live:       { ja: "現在営業中 — 今日も元気に開いてます！", en: "Now Open — Come on in!", ko: "현재 영업 중 — 오늘도 힘차게 열었습니다!", zh: "现在营业中 — 今天也精力充沛地开门迎客！" } as T,
+    live:          { ja: "現在営業中 — 今日も元気に開いてます！", en: "Now Open — Come on in!", ko: "현재 영업 중 — 오늘도 힘차게 열었습니다!", zh: "现在营业中 — 今天也精力充沛地开门迎客！" } as T,
+    statusOpen:    { ja: "現在営業中", en: "Now Open", ko: "현재 영업 중", zh: "现在营业中" } as T,
+    statusClosed:  { ja: "本日の営業は終了しました", en: "Closed for Today", ko: "오늘 영업 종료", zh: "今日营业已结束" } as T,
+    statusHoliday: { ja: "本日定休日", en: "Closed Today", ko: "오늘 정기휴일", zh: "今日定期休息" } as T,
+    statusNext:    { ja: "次の営業は", en: "Opens at", ko: "다음 영업은", zh: "下次营业" } as T,
+    statusFrom:    { ja: "から", en: "", ko: "부터", zh: "起" } as T,
   },
 
   instagram: {

@@ -45,9 +45,13 @@ export async function GET() {
 
     // rows[0] = header row, last row = latest entry
     const last = rows[rows.length - 1];
-    const [date = "", message = "", veggie = "", author = "", instagram_url = "", calendar_instagram_url = ""] = last;
+    const [
+      date = "", message = "", veggie = "", author = "",
+      instagram_url = "", calendar_instagram_url = "",
+      lunch_start = "", lunch_end = "", dinner_start = "", dinner_end = "", closed_days = "",
+    ] = last;
 
-    return NextResponse.json({ date, message, veggie, author, instagram_url, calendar_instagram_url });
+    return NextResponse.json({ date, message, veggie, author, instagram_url, calendar_instagram_url, lunch_start, lunch_end, dinner_start, dinner_end, closed_days });
   } catch (e) {
     console.error("Board API error:", e);
     return NextResponse.json({ error: "Failed to load board" }, { status: 500 });

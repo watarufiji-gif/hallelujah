@@ -4,5 +4,10 @@
   "veggie": "アスパラ",
   "author": "店主より",
   "instagram_url": "https://www.instagram.com/p/DXPFvuJCRrr/?img_index=1",
-  "calendar_instagram_url": "https://www.instagram.com/p/DX4QIZOifpy/"
+  "calendar_instagram_url": "https://www.instagram.com/p/DX4QIZOifpy/",
+  "lunch_start": "11:00",
+  "lunch_end": "15:00",
+  "dinner_start": "17:00",
+  "dinner_end": "22:00",
+  "closed_days": "月"
 }

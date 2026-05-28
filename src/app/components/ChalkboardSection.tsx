@@ -7,12 +7,51 @@ import fallback from "@/data/board.json";
 import { useLang } from "@/context/LanguageContext";
 import { translations, t } from "@/lib/translations";
 
-type BoardData = { date: string; message: string; veggie: string; author: string };
+type BoardData = {
+  date: string; message: string; veggie: string; author: string;
+  lunch_start: string; lunch_end: string;
+  dinner_start: string; dinner_end: string;
+  closed_days: string;
+};
+
+type StatusKind =
+  | { kind: "open" }
+  | { kind: "holiday" }
+  | { kind: "before_open"; time: string }
+  | { kind: "after_close" };
+
+function getStatus(board: BoardData): StatusKind {
+  const jst = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" }));
+  const dayNames = ["日", "月", "火", "水", "木", "金", "土"];
+  const today = dayNames[jst.getDay()];
+
+  if (board.closed_days?.includes(today)) return { kind: "holiday" };
+
+  const toMin = (s: string) => {
+    if (!s) return -1;
+    const [h, m = "0"] = s.split(":");
+    return Number(h) * 60 + Number(m);
+  };
+  const now = jst.getHours() * 60 + jst.getMinutes();
+  const ls = toMin(board.lunch_start);
+  const le = toMin(board.lunch_end);
+  const ds = toMin(board.dinner_start);
+  const de = toMin(board.dinner_end);
+
+  if ((ls >= 0 && le >= 0 && now >= ls && now < le) ||
+      (ds >= 0 && de >= 0 && now >= ds && now < de)) return { kind: "open" };
+
+  if (ls >= 0 && now < ls) return { kind: "before_open", time: board.lunch_start };
+  if (ds >= 0 && le >= 0 && now >= le && now < ds) return { kind: "before_open", time: board.dinner_start };
+
+  return { kind: "after_close" };
+}
 
 export default function ChalkboardSection() {
   const { lang } = useLang();
   const c = translations.chalk;
   const [board, setBoard] = useState<BoardData>(fallback);
+  const [status, setStatus] = useState<StatusKind>(() => getStatus(fallback));
 
   useEffect(() => {
     fetch("/api/board")
@@ -20,6 +59,21 @@ export default function ChalkboardSection() {
       .then(data => { if (data && data.date) setBoard(data); })
       .catch(() => {});
   }, []);
+
+  // board 更新時 + 毎分 JST 時刻で再計算
+  useEffect(() => {
+    const compute = () => setStatus(getStatus(board));
+    compute();
+    const id = setInterval(compute, 60_000);
+    return () => clearInterval(id);
+  }, [board]);
+
+  const statusLabel = (s: StatusKind): string => {
+    if (s.kind === "open")       return t(c.statusOpen, lang);
+    if (s.kind === "holiday")    return t(c.statusHoliday, lang);
+    if (s.kind === "after_close") return t(c.statusClosed, lang);
+    return `${t(c.statusNext, lang)} ${s.time}${t(c.statusFrom, lang)}`;
+  };
 
   const { date, message, veggie, author } = board;
 
@@ -70,14 +124,21 @@ export default function ChalkboardSection() {
 
           </div>
 
-          <div className="bg-[#142318] px-6 sm:px-10 py-3 flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#a8d5b0] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#3d7a52]" />
+          <div
+            className="px-6 sm:px-10 py-3 flex items-center gap-2"
+            style={{ background: status.kind === "open" ? "#142318" : "#0e1a10" }}
+          >
+            <span className="relative flex h-2 w-2 shrink-0">
+              {status.kind === "open" ? (
+                <>
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#a8d5b0] opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-[#3d7a52]" />
+                </>
+              ) : (
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-white/20" />
+              )}
             </span>
-            <span className="chalk-text-dim text-xs">
-              {t(c.live, lang)}
-            </span>
+            <span className="chalk-text-dim text-xs">{statusLabel(status)}</span>
           </div>
         </motion.div>
       </div>
