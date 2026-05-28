@@ -144,11 +144,6 @@ export default function SakePage() {
                   </span>
                   <span className="text-white/40 text-xs ml-1">{t(s.yen, lang)}</span>
                 </div>
-                {i === 3 && (
-                  <span className="text-[10px] tracking-[0.1em] uppercase" style={{ color: "#e8c55a" }}>
-                    {t(s.bestValue, lang)}
-                  </span>
-                )}
               </motion.div>
             ))}
           </div>

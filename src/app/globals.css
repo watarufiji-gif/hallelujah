@@ -38,8 +38,7 @@ body {
 }
 
 .bg-night {
-  background-color: #0f1a14;
-  background-image: radial-gradient(ellipse 60% 50% at 20% 10%, rgba(201,134,42,0.1) 0%, transparent 60%);
+  background-color: #000000;
 }
 
 /* Section label */
