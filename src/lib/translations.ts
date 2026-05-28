@@ -59,7 +59,8 @@ export const translations = {
     statusOpen:    { ja: "現在営業中", en: "Now Open", ko: "현재 영업 중", zh: "现在营业中" } as T,
     statusClosed:  { ja: "本日の営業は終了しました", en: "Closed for Today", ko: "오늘 영업 종료", zh: "今日营业已结束" } as T,
     statusHoliday: { ja: "本日定休日", en: "Closed Today", ko: "오늘 정기휴일", zh: "今日定期休息" } as T,
-    statusNext:    { ja: "次の営業は", en: "Opens at", ko: "다음 영업은", zh: "下次营业" } as T,
+    statusToday:   { ja: "本日の営業は", en: "Opens today at", ko: "오늘 영업은", zh: "今日营业" } as T,
+    statusNext:    { ja: "次の営業は", en: "Next opening at", ko: "다음 영업은", zh: "下次营业" } as T,
     statusFrom:    { ja: "から", en: "", ko: "부터", zh: "起" } as T,
   },
 

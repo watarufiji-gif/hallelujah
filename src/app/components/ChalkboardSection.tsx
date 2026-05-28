@@ -17,8 +17,9 @@ type BoardData = {
 type StatusKind =
   | { kind: "open" }
   | { kind: "holiday" }
-  | { kind: "before_open"; time: string }
-  | { kind: "after_close" };
+  | { kind: "before_today"; time: string }  // 0:00〜ランチ前 → 「本日の営業は HH:MMから」
+  | { kind: "between"; time: string }       // ランチ後〜ディナー前 → 「次の営業は HH:MMから」
+  | { kind: "after_close" };               // ディナー後〜23:59 → 「本日の営業は終了しました」
 
 function getStatus(board: BoardData): StatusKind {
   const jst = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" }));
@@ -38,12 +39,17 @@ function getStatus(board: BoardData): StatusKind {
   const ds = toMin(board.dinner_start);
   const de = toMin(board.dinner_end);
 
-  if ((ls >= 0 && le >= 0 && now >= ls && now < le) ||
-      (ds >= 0 && de >= 0 && now >= ds && now < de)) return { kind: "open" };
+  // 営業中（ランチ or ディナー）
+  if (ls >= 0 && le >= 0 && now >= ls && now < le) return { kind: "open" };
+  if (ds >= 0 && de >= 0 && now >= ds && now < de) return { kind: "open" };
 
-  if (ls >= 0 && now < ls) return { kind: "before_open", time: board.lunch_start };
-  if (ds >= 0 && le >= 0 && now >= le && now < ds) return { kind: "before_open", time: board.dinner_start };
+  // 0:00〜ランチ開始前：「本日の営業は HH:MMから」
+  if (ls >= 0 && now < ls) return { kind: "before_today", time: board.lunch_start };
 
+  // ランチ終了〜ディナー開始前：「次の営業は HH:MMから」
+  if (ds >= 0 && le >= 0 && now >= le && now < ds) return { kind: "between", time: board.dinner_start };
+
+  // ディナー終了後〜23:59：「本日の営業は終了しました」
   return { kind: "after_close" };
 }
 
@@ -69,10 +75,11 @@ export default function ChalkboardSection() {
   }, [board]);
 
   const statusLabel = (s: StatusKind): string => {
-    if (s.kind === "open")       return t(c.statusOpen, lang);
-    if (s.kind === "holiday")    return t(c.statusHoliday, lang);
-    if (s.kind === "after_close") return t(c.statusClosed, lang);
-    return `${t(c.statusNext, lang)} ${s.time}${t(c.statusFrom, lang)}`;
+    if (s.kind === "open")         return t(c.statusOpen, lang);
+    if (s.kind === "holiday")      return t(c.statusHoliday, lang);
+    if (s.kind === "after_close")  return t(c.statusClosed, lang);
+    if (s.kind === "between")      return `${t(c.statusNext, lang)} ${s.time}${t(c.statusFrom, lang)}`;
+    return `${t(c.statusToday, lang)} ${s.time}${t(c.statusFrom, lang)}`;
   };
 
   const { date, message, veggie, author } = board;
