@@ -61,13 +61,13 @@ export default function SakePage() {
   return (
     <>
       {/* ─── ヒーロー ─── */}
-      <section className="relative min-h-[55vh] flex items-end overflow-hidden bg-night pt-20">
+      <section className="relative min-h-[42vh] flex items-end overflow-hidden bg-night pt-20">
         <div className="absolute inset-0 pointer-events-none" aria-hidden>
           <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[250px] bg-[#c9862a]/12 blur-3xl rounded-full" />
           <div className="absolute bottom-0 right-0 w-72 h-72 bg-[#c9862a]/08 blur-3xl" />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pb-16 w-full">
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pb-8 w-full">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -97,7 +97,7 @@ export default function SakePage() {
       </section>
 
       {/* ─── 4プランテーブル ─── */}
-      <section className="bg-night py-16 sm:py-20">
+      <section className="bg-night py-10 sm:py-14">
         <div className="max-w-6xl mx-auto px-4 sm:px-6">
 
           <motion.div
@@ -185,7 +185,7 @@ export default function SakePage() {
 
       {/* ─── 馬刺し×日本酒 CTA ─── */}
       <section
-        className="py-16 sm:py-20"
+        className="py-10 sm:py-14"
         style={{ background: "linear-gradient(135deg,#0f1c14,#1a2e22)" }}
       >
         <div className="max-w-4xl mx-auto px-4 sm:px-6">

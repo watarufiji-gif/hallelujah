@@ -71,7 +71,7 @@ export default function AccessPage() {
 
       {/* ─── ページヒーロー ─── */}
       <div className="pt-20 md:pt-24" style={{ background: "#ffffff", borderBottom: "1px solid #e5e5e5" }}>
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 py-8 sm:py-12">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -91,7 +91,7 @@ export default function AccessPage() {
         </div>
       </div>
 
-      <section className="py-20 sm:py-32" style={{ background: "#ffffff" }}>
+      <section className="py-10 sm:py-16" style={{ background: "#ffffff" }}>
         <div className="max-w-5xl mx-auto px-4 sm:px-6 space-y-8">
 
           {/* ━━━ 店舗情報（最上部）━━━ */}

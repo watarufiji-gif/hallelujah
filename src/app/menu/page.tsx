@@ -63,7 +63,7 @@ export default function MenuPage() {
   return (
     <>
       <div className="pt-20 md:pt-24" style={{ background: "#ffffff", borderBottom: "1px solid #e5e5e5" }}>
-        <div className="max-w-6xl mx-auto px-6 sm:px-10 py-20 sm:py-28">
+        <div className="max-w-6xl mx-auto px-6 sm:px-10 py-8 sm:py-12">
           <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -110,7 +110,7 @@ export default function MenuPage() {
         </div>
       </div>
 
-      <section className="py-20 sm:py-32" style={{ background: "#ffffff", minHeight: "50vh" }}>
+      <section className="py-10 sm:py-16" style={{ background: "#ffffff", minHeight: "50vh" }}>
         <div className="max-w-6xl mx-auto px-6 sm:px-10">
           <div className="mb-12">
             <h2 className="font-serif text-2xl font-bold" style={{ color: "#1a1a1a" }}>
