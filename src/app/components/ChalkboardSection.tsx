@@ -22,9 +22,19 @@ type StatusKind =
   | { kind: "after_close" };               // ディナー後〜23:59 → 「本日の営業は終了しました」
 
 function getStatus(board: BoardData): StatusKind {
-  const jst = new Date(new Date().toLocaleString("en-US", { timeZone: "Asia/Tokyo" }));
-  const dayNames = ["日", "月", "火", "水", "木", "金", "土"];
-  const today = dayNames[jst.getDay()];
+  const parts = new Intl.DateTimeFormat("en-US", {
+    timeZone: "Asia/Tokyo",
+    hour: "numeric", minute: "numeric", second: "numeric",
+    hour12: false, weekday: "short",
+    year: "numeric", month: "numeric", day: "numeric",
+  }).formatToParts(new Date());
+  const get = (t: string) => parts.find(p => p.type === t)?.value ?? "";
+  const jstHour = Number(get("hour") === "24" ? "0" : get("hour"));
+  const jstMin  = Number(get("minute"));
+  const now = jstHour * 60 + jstMin;
+
+  const dayMap: Record<string, string> = { Sun:"日", Mon:"月", Tue:"火", Wed:"水", Thu:"木", Fri:"金", Sat:"土" };
+  const today = dayMap[get("weekday")] ?? "";
 
   if (board.closed_days?.includes(today)) return { kind: "holiday" };
 
@@ -33,7 +43,6 @@ function getStatus(board: BoardData): StatusKind {
     const [h, m = "0"] = s.split(":");
     return Number(h) * 60 + Number(m);
   };
-  const now = jst.getHours() * 60 + jst.getMinutes();
   const ls = toMin(board.lunch_start);
   const le = toMin(board.lunch_end);
   const ds = toMin(board.dinner_start);
@@ -65,7 +74,19 @@ export default function ChalkboardSection() {
   useEffect(() => {
     fetch("/api/board")
       .then(r => r.ok ? r.json() : null)
-      .then(data => { if (data && data.date) setBoard(data); })
+      .then(data => {
+        if (data && data.date) {
+          setBoard({
+            ...fallback,
+            ...data,
+            lunch_start:  data.lunch_start  || fallback.lunch_start,
+            lunch_end:    data.lunch_end    || fallback.lunch_end,
+            dinner_start: data.dinner_start || fallback.dinner_start,
+            dinner_end:   data.dinner_end   || fallback.dinner_end,
+            closed_days:  data.closed_days  || fallback.closed_days,
+          });
+        }
+      })
       .catch(() => {});
     fetch("/api/calendar")
       .then(r => r.ok ? r.json() : null)
