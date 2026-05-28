@@ -80,7 +80,7 @@ export default function SakePage() {
             initial={{ opacity: 0, y: 28 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.1, ease: EASE }}
-            className="font-serif text-3xl sm:text-4xl md:text-5xl text-white font-bold leading-tight mb-4"
+            className="font-serif text-[1.55rem] sm:text-4xl md:text-5xl text-white font-bold leading-tight mb-4"
           >
             {t(s.h1line1, lang)}<br />
             <span className="text-[#e8c55a]">{t(s.h1line2, lang)}</span>
