@@ -138,7 +138,7 @@ export const translations = {
     hoursTitle:   { ja: "営業時間", en: "Opening Hours", ko: "영업시간", zh: "营业时间" } as T,
     navBtn:       { ja: "Googleマップでルートを開く", en: "Open Route in Google Maps", ko: "구글 맵으로 경로 열기", zh: "在谷歌地图打开路线" } as T,
     parkHeader:   { ja: "お車でお越しの方へ ── 駐車場のご案内", en: "For Drivers — Parking Information", ko: "차로 오시는 분께 ── 주차장 안내", zh: "驾车前来的朋友 ── 停车场介绍" } as T,
-    parkH2pre:    { ja: "お隣「ドキわくランド 長後駅前店」の駐車場が", en: "Free parking at the adjacent lot", ko: "옆 '도키와쿠란드' 주차장이", zh: "隔壁停车场" } as T,
+    parkH2pre:    { ja: "「ドキわくランド 長後駅前店」の駐車場が", en: "Free parking at the adjacent lot", ko: "옆 '도키와쿠란드' 주차장이", zh: "隔壁停车场" } as T,
     parkFree:     { ja: "無料", en: "FREE", ko: "무료", zh: "免费" } as T,
     parkBody:     { ja: "広々とした駐車場をご利用いただけます。お帰りの際に駐車券をスタッフへご提示ください。安心してお食事をお楽しみください。", en: "Spacious parking available. Please show your parking ticket to staff when leaving. Enjoy your meal with peace of mind.", ko: "넓은 주차장을 이용하실 수 있습니다. 나가실 때 주차권을 직원에게 제시해 주세요. 편안하게 식사를 즐기세요.", zh: "宽敞停车场随时可用。离开时请将停车券出示给工作人员。请放心用餐。" } as T,
     trainTitle:   { ja: "電車でお越しの方", en: "By Train", ko: "전철로 오시는 분", zh: "乘电车前来" } as T,
