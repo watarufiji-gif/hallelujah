@@ -102,7 +102,7 @@ export default function ChalkboardSection() {
   const { date, message, veggie, author } = board;
 
   return (
-    <section className="py-16 sm:py-24 bg-white">
+    <section className="pt-6 pb-16 sm:pt-8 sm:pb-24 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6">
         <motion.div
           initial={{ opacity: 0, y: 32, rotate: -0.8 }}

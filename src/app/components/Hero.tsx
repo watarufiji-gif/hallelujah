@@ -29,7 +29,7 @@ export default function Hero() {
 
       <div
         className="relative z-10"
-        style={{ paddingTop: "calc(5rem + 1rem)", paddingBottom: "1.5rem" }}
+        style={{ paddingTop: "calc(5rem + 1rem)", paddingBottom: "0.5rem" }}
       >
         <div className="max-w-6xl mx-auto px-6 sm:px-10 w-full">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
