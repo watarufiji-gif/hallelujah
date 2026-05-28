@@ -53,16 +53,23 @@ function getStatus(board: BoardData): StatusKind {
   return { kind: "after_close" };
 }
 
+type CalendarEntry = { status: string; memo: string };
+
 export default function ChalkboardSection() {
   const { lang } = useLang();
   const c = translations.chalk;
   const [board, setBoard] = useState<BoardData>(fallback);
   const [status, setStatus] = useState<StatusKind>(() => getStatus(fallback));
+  const [calendar, setCalendar] = useState<CalendarEntry | null>(null);
 
   useEffect(() => {
     fetch("/api/board")
       .then(r => r.ok ? r.json() : null)
       .then(data => { if (data && data.date) setBoard(data); })
+      .catch(() => {});
+    fetch("/api/calendar")
+      .then(r => r.ok ? r.json() : null)
+      .then(data => { if (data) setCalendar(data); })
       .catch(() => {});
   }, []);
 
@@ -74,12 +81,22 @@ export default function ChalkboardSection() {
     return () => clearInterval(id);
   }, [board]);
 
-  const statusLabel = (s: StatusKind): string => {
-    if (s.kind === "open")         return t(c.statusOpen, lang);
-    if (s.kind === "holiday")      return t(c.statusHoliday, lang);
-    if (s.kind === "after_close")  return t(c.statusClosed, lang);
-    if (s.kind === "between")      return `${t(c.statusNext, lang)} ${s.time}${t(c.statusFrom, lang)}`;
-    return `${t(c.statusToday, lang)} ${s.time}${t(c.statusFrom, lang)}`;
+  const isTempClosed = calendar?.status === "休業";
+  const isShortHours = calendar?.status === "短縮";
+
+  const statusLabel = (): string => {
+    if (isTempClosed) {
+      const base = t(c.statusTempClosed, lang);
+      return calendar?.memo ? `${base}：${calendar.memo}` : base;
+    }
+    let label: string;
+    if (status.kind === "open")         label = t(c.statusOpen, lang);
+    else if (status.kind === "holiday") label = t(c.statusHoliday, lang);
+    else if (status.kind === "after_close") label = t(c.statusClosed, lang);
+    else if (status.kind === "between") label = `${t(c.statusNext, lang)} ${status.time}${t(c.statusFrom, lang)}`;
+    else label = `${t(c.statusToday, lang)} ${status.time}${t(c.statusFrom, lang)}`;
+    if (isShortHours && calendar?.memo) label += `（${calendar.memo}）`;
+    return label;
   };
 
   const { date, message, veggie, author } = board;
@@ -133,10 +150,10 @@ export default function ChalkboardSection() {
 
           <div
             className="px-6 sm:px-10 py-3 flex items-center gap-2"
-            style={{ background: status.kind === "open" ? "#142318" : "#0e1a10" }}
+            style={{ background: isTempClosed ? "#3a0e0e" : status.kind === "open" ? "#142318" : "#0e1a10" }}
           >
             <span className="relative flex h-2 w-2 shrink-0">
-              {status.kind === "open" ? (
+              {!isTempClosed && status.kind === "open" ? (
                 <>
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#a8d5b0] opacity-75" />
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-[#3d7a52]" />
@@ -145,7 +162,7 @@ export default function ChalkboardSection() {
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-white/20" />
               )}
             </span>
-            <span className="chalk-text-dim text-xs">{statusLabel(status)}</span>
+            <span className="chalk-text-dim text-xs">{statusLabel()}</span>
           </div>
         </motion.div>
       </div>
