@@ -103,7 +103,7 @@ export default function InstagramEmbedSection() {
               ハレルヤの日常
             </h2>
           </div>
-          <div className="absolute right-0 flex items-center gap-3">
+          <div className="absolute right-6 flex items-center gap-3">
             <a
               href={IG_PAGE}
               target="_blank"
