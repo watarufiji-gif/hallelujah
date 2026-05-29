@@ -4,7 +4,12 @@ import Header    from "./components/Header";
 import MobileNav from "./components/MobileNav";
 import { LanguageProvider } from "@/context/LanguageContext";
 
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ??
+  (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "長後農村かふぇ ハレルヤ｜長後駅3分・農家直営・日本酒飲み放題",
   description:
     "藤沢市・長後駅徒歩3分。農家直営「ふるうつらんど井上」の新鮮野菜×馬刺し×日本酒飲み放題。子連れ・おひとり様歓迎。駐車場無料。",
@@ -14,6 +19,20 @@ export const metadata: Metadata = {
     description: "農家直営ならではの新鮮野菜と圧倒的コスパ。日本酒飲み放題も解禁！",
     locale: "ja_JP",
     type: "website",
+    images: [
+      {
+        url: "/images/ogp.jpg",
+        width: 1200,
+        height: 630,
+        alt: "農村かふぇ ハレルヤ",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "長後農村かふぇ ハレルヤ｜長後駅3分・農家直営・日本酒飲み放題",
+    description: "農家直営ならではの新鮮野菜と圧倒的コスパ。日本酒飲み放題も解禁！",
+    images: ["/images/ogp.jpg"],
   },
 };
 

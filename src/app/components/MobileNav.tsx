@@ -1,11 +1,30 @@
 "use client";
 
-import { Phone, MapPin, ExternalLink } from "lucide-react";
+import { Phone, MapPin, ExternalLink, Share2 } from "lucide-react";
+import { useState, useEffect } from "react";
 
 const GOOGLE_MAPS_NAV =
   "https://www.google.com/maps/dir/?api=1&destination=長後農村かふぇ+ハレルヤ+藤沢市長後&travelmode=driving";
 
 export default function MobileNav() {
+  const [canShare, setCanShare] = useState(false);
+
+  useEffect(() => {
+    setCanShare("share" in navigator);
+  }, []);
+
+  const handleShare = async () => {
+    try {
+      await navigator.share({
+        title: "農村かふぇ ハレルヤ",
+        text: "長後駅東口徒歩3分・農家直営の新鮮野菜と日本酒飲み放題",
+        url: window.location.href,
+      });
+    } catch {
+      // キャンセルまたはエラーは無視
+    }
+  };
+
   return (
     <>
       {/* スマホ専用 ─ 画面最下部 固定 CTA */}
@@ -44,6 +63,19 @@ export default function MobileNav() {
           <ExternalLink size={19} />
           <span className="text-[10px] font-bold tracking-wide">Instagram</span>
         </a>
+
+        {/* 4. 送る（Web Share API 対応ブラウザのみ表示）*/}
+        {canShare && (
+          <button
+            type="button"
+            onClick={handleShare}
+            className="flex-1 flex flex-col items-center justify-center gap-0.5 py-3 active:opacity-80 transition-opacity"
+            style={{ background: "#2a2a2a", color: "#e8e8d8" }}
+          >
+            <Share2 size={19} />
+            <span className="text-[10px] font-bold tracking-wide">送る</span>
+          </button>
+        )}
 
       </div>
 
