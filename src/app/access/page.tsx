@@ -8,6 +8,7 @@ import Footer from "../components/Footer";
 import PhoneReserveButton from "../components/PhoneReserveButton";
 import { useLang } from "@/context/LanguageContext";
 import { translations, t } from "@/lib/translations";
+import fallback from "@/data/board.json";
 
 declare global {
   interface Window {
@@ -41,7 +42,8 @@ export default function AccessPage() {
   const { lang } = useLang();
   const a = translations.access;
 
-  const [calendarUrl, setCalendarUrl] = useState("");
+  // フォールバックURLで初期化することで、スクリプトonLoad時にDOMにblockquoteが存在する
+  const [calendarUrl, setCalendarUrl] = useState(fallback.calendar_instagram_url || "");
 
   useEffect(() => {
     fetch("/api/board")
@@ -50,8 +52,11 @@ export default function AccessPage() {
       .catch(() => {});
   }, []);
 
+  // calendarUrl変更後、DOMが確定するまで少し待ってからprocess()を呼ぶ
   useEffect(() => {
-    if (calendarUrl && window.instgrm) window.instgrm.Embeds.process();
+    if (!calendarUrl) return;
+    const id = setTimeout(() => window.instgrm?.Embeds.process(), 150);
+    return () => clearTimeout(id);
   }, [calendarUrl]);
 
   const HOURS = [
