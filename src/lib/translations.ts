@@ -97,6 +97,54 @@ export const translations = {
     dinnerH2:     { ja: "居酒屋メニュー", en: "Izakaya Menu", ko: "이자카야 메뉴", zh: "居酒屋菜单" } as T,
     popular:      { ja: "人気", en: "Popular", ko: "인기", zh: "热门" } as T,
     ctaAll:       { ja: "お電話でご予約・お問い合わせ", en: "Call to Reserve or Enquire", ko: "전화로 예약·문의", zh: "电话预约·咨询" } as T,
+    menuNote:     { ja: "掲載メニューは一部です。その他のメニューはスタッフまでお気軽にお尋ねください。", en: "The menu shown here is a selection only. Please feel free to ask our staff about other items.", ko: "게재된 메뉴는 일부입니다. 기타 메뉴에 대해서는 스태프에게 편하게 문의해 주세요.", zh: "本页仅为部分菜单。其他菜品请随时向工作人员询问。" } as T,
+  },
+
+  menuItems: {
+    l1: {
+      name: { ja: "農家直送・魚介煮干しラーメン", en: "Farm-Fresh Niboshi Ramen", ko: "농가 직송 생선 말린 라면", zh: "农家直送鱼介煮干拉面" } as T,
+      desc: { ja: "毎朝仕入れる新鮮野菜がたっぷり。深みのある煮干しスープと農家の野菜が織りなす一杯。", en: "Loaded with farm-fresh vegetables sourced every morning. Rich niboshi broth meets crisp seasonal veg in every bowl.", ko: "매일 아침 직송하는 신선한 채소가 듬뿍. 깊은 맛의 니보시 스프와 농가 채소가 어우러진 한 그릇.", zh: "满满当当每日早晨直送的新鲜蔬菜。深厚的煮干鱼汤与农家蔬菜交织成就这一碗。" } as T,
+    },
+    l2: {
+      name: { ja: "野菜たっぷり冷やしつけ麺", en: "Chilled Tsukemen with Farm Vegetables", ko: "채소 듬뿍 차가운 쯔케멘", zh: "蔬菜满满冷沾面" } as T,
+      desc: { ja: "旬野菜の甘みが溶け込んだ濃厚つけ汁。麺の量も大盛り無料。", en: "A rich dipping broth infused with the natural sweetness of seasonal veg. Extra-large portion at no extra charge.", ko: "제철 채소의 단맛이 녹아든 진한 쯔케 국물. 대성리 무료.", zh: "融入时令蔬菜甜味的浓郁蘸汁。面量大份免费。" } as T,
+    },
+    l3: {
+      name: { ja: "日替わり旬定食", en: "Daily Seasonal Set Meal", ko: "오늘의 제철 정식", zh: "每日时令套餐" } as T,
+      desc: { ja: "その日の仕入れで変わる！毎日来ても飽きない、農家ならではの彩り定食。", en: "Changes daily with the best produce of the day — vibrant farm-style set meals you never tire of.", ko: "그날 들여오는 재료에 따라 바뀝니다! 매일 와도 질리지 않는 농가의 색깔 정식.", zh: "随当天进货变化！天天来也不厌倦的农家色彩套餐。" } as T,
+    },
+    l4: {
+      name: { ja: "農村カレー", en: "Farm Village Curry", ko: "농촌 카레", zh: "农村咖喱" } as T,
+      desc: { ja: "地元野菜をぶつ切りにして煮込んだ、野菜の甘みが際立つ農村カレー。", en: "Locally grown vegetables slow-simmered in large chunks — a curry that brings out the natural sweetness of the produce.", ko: "지역 채소를 큼직하게 썰어 끓인, 채소의 단맛이 두드러지는 농촌 카레.", zh: "将本地蔬菜大块慢炖，蔬菜的甜味尽显其中的农村咖喱。" } as T,
+    },
+    l5: {
+      name: { ja: "野菜たっぷり炒め定食", en: "Stir-Fried Vegetable Set Meal", ko: "채소 듬뿍 볶음 정식", zh: "蔬菜满满炒菜套餐" } as T,
+      desc: { ja: "農家直営だからできる、これでもかと野菜を盛り込んだ炒め定食。", en: "An abundant stir-fry loaded with vegetables — only possible because we grow our own.", ko: "농가 직영이기에 가능한, 채소를 가득 담은 볶음 정식.", zh: "农家直营才能做到的、满满当当的蔬菜炒菜套餐。" } as T,
+    },
+    d1: {
+      name: { ja: "熊本直送 馬刺し盛り合わせ", en: "Kumamoto Basashi Assortment", ko: "구마모토 직송 바사시 모둠", zh: "熊本直送马肉刺身拼盘" } as T,
+      desc: { ja: "全9種類の部位からお選び。希少なたてがみ（コーネ）や赤身、レバーまで。熊本から直送。", en: "Choose from 9 cuts including the rare mane (kōne), lean cuts and liver — delivered direct from Kumamoto.", ko: "9가지 부위 중 선택. 희귀한 갈기(코네)·적육·간까지. 구마모토에서 직송.", zh: "从全9种部位中选择。稀有的鬃毛（科内）、瘦肉、肝脏一应俱全。直送自熊本。" } as T,
+    },
+    d2: {
+      name: { ja: "旬野菜の素揚げ", en: "Simply Fried Seasonal Vegetables", ko: "제철 채소 튀김", zh: "时令蔬菜素炸" } as T,
+      desc: { ja: "農家直営の旬野菜をシンプルに揚げただけ。素材の力がそのまま味になる。", en: "Farm-direct seasonal veg, deep-fried just as they are — the ingredient's own flavour is the seasoning.", ko: "농가 직영의 제철 채소를 그대로 튀긴 것. 재료 그 자체의 힘이 맛이 됩니다.", zh: "将农家直营的时令蔬菜简单油炸。食材本身的力量就是味道。" } as T,
+    },
+    d3: {
+      name: { ja: "大ジョッキサワー", en: "Mega Sour (Large Mug)", ko: "대형 조끼 사워", zh: "大杯酸味酒" } as T,
+      desc: { ja: "なみなみ注がれた大ジョッキ。レモン・ウーロン・グレープフルーツなど種類豊富。", en: "Brimming to the top of an oversized mug. Flavours include lemon, oolong, grapefruit and more.", ko: "넘칠 듯한 대형 조끼. 레몬·우롱·자몽 등 종류도 풍부.", zh: "满满注入大杯的酸味酒。柠檬、乌龙、葡萄柚等种类丰富。" } as T,
+    },
+    d4: {
+      name: { ja: "おつまみ各種", en: "Small Bites (Various)", ko: "안주 각종", zh: "各种下酒小菜" } as T,
+      desc: { ja: "気軽なサク飲みに。小皿料理を好きなだけ組み合わせて楽しめます。", en: "Perfect for a casual drink. Mix and match small plates however you like.", ko: "가볍게 한잔에 딱. 소접시 요리를 취향대로 조합해서 즐겨 보세요.", zh: "适合轻松小酌。随意搭配小碟料理尽情享用。" } as T,
+    },
+    d5: {
+      name: { ja: "本日の旬野菜炒め", en: "Today's Seasonal Stir-Fry", ko: "오늘의 제철 채소 볶음", zh: "今日时令蔬菜炒菜" } as T,
+      desc: { ja: "その日仕入れた野菜で変わるメニュー。農家ならではの鮮度が光る居酒屋の一品。", en: "Changes daily with whatever vegetables came in. Farm-fresh quality shines in every bite.", ko: "그날 들여온 채소로 바뀌는 메뉴. 농가 직영의 신선함이 빛나는 이자카야 일품.", zh: "随当天进货的蔬菜而变化的菜品。农家新鲜度熠熠生辉。" } as T,
+    },
+    d6: {
+      name: { ja: "生ビール", en: "Draft Beer", ko: "생맥주", zh: "生啤酒" } as T,
+      desc: { ja: "喉越し爽快。よく冷えた生ビールでまずは一杯。", en: "Crisp and refreshing — well-chilled draft beer to kick things off.", ko: "시원하고 상쾌한 맛. 잘 식힌 생맥주로 우선 한잔.", zh: "清爽顺滑。先来一杯冰镇生啤开始吧。" } as T,
+    },
   },
 
   sake: {

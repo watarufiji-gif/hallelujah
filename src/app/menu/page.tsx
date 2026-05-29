@@ -7,12 +7,17 @@ import Footer from "../components/Footer";
 import PhoneReserveButton from "../components/PhoneReserveButton";
 import { useLang } from "@/context/LanguageContext";
 import { translations, t } from "@/lib/translations";
+import type { Lang } from "@/context/LanguageContext";
 
 type Tab = "lunch" | "dinner";
 const EASE = [0.22, 1, 0.36, 1] as [number, number, number, number];
 type MenuItem = typeof menuData.lunch[0];
+type MenuItemT = { name: Record<Lang, string>; desc: Record<Lang, string> };
 
-function MenuCard({ item, idx, popularLabel }: { item: MenuItem; idx: number; popularLabel: string }) {
+function MenuCard({ item, idx, popularLabel, lang }: { item: MenuItem; idx: number; popularLabel: string; lang: Lang }) {
+  const mi = (translations.menuItems as Record<string, MenuItemT>)[item.id];
+  const name = mi ? t(mi.name, lang) : item.name;
+  const desc = mi ? t(mi.desc, lang) : item.desc;
   return (
     <motion.article
       initial={{ opacity: 0, y: 24 }}
@@ -44,11 +49,11 @@ function MenuCard({ item, idx, popularLabel }: { item: MenuItem; idx: number; po
       <div className="p-5">
         <div className="flex items-start justify-between gap-2 mb-2">
           <h3 className="font-serif text-base font-bold leading-snug flex-1" style={{ color: "#1a1a1a" }}>
-            {item.name}
+            {name}
           </h3>
           <span className="price-stamp shrink-0">¥{item.price}</span>
         </div>
-        <p className="text-xs leading-relaxed" style={{ color: "#999999" }}>{item.desc}</p>
+        <p className="text-xs leading-relaxed" style={{ color: "#999999" }}>{desc}</p>
       </div>
     </motion.article>
   );
@@ -122,16 +127,20 @@ export default function MenuPage() {
           <AnimatePresence mode="wait">
             <div key={tab} className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {items.map((item, i) => (
-                <MenuCard key={item.id} item={item} idx={i} popularLabel={t(m.popular, lang)} />
+                <MenuCard key={item.id} item={item} idx={i} popularLabel={t(m.popular, lang)} lang={lang} />
               ))}
             </div>
           </AnimatePresence>
+
+          <p className="text-xs mt-10 text-center" style={{ color: "#999999" }}>
+            {t(m.menuNote, lang)}
+          </p>
 
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.4 }}
-            className="mt-16 text-center"
+            className="mt-8 text-center"
           >
             <PhoneReserveButton label={t(m.ctaAll, lang)} className="btn-sun" />
           </motion.div>
