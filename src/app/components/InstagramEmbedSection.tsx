@@ -89,21 +89,23 @@ export default function InstagramEmbedSection() {
 
       <div className="max-w-5xl mx-auto px-6 sm:px-10">
 
-        {/* 上段: タイトル中央 + SNSアイコン右 */}
+        {/* 上段: 下段グリッドと同じ2カラム割りでタイトルとアイコンの左端を揃える */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.7, ease: EASE }}
-          className="relative flex items-center justify-center mb-10"
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 items-end mb-8"
         >
-          <div className="text-center">
+          {/* 左: タイトル（Instagram埋め込みの上左端と揃う） */}
+          <div>
             <p className="sec-eyebrow mb-3">Instagram / Facebook</p>
             <h2 className="font-serif text-4xl sm:text-5xl font-bold" style={{ color: "#1a1a1a" }}>
               ハレルヤの日常
             </h2>
           </div>
-          <div className="absolute right-6 flex items-center gap-3">
+          {/* 右: SNSアイコン（Facebookプラグインの上左端と揃う） */}
+          <div className="flex items-center gap-3">
             <a
               href={IG_PAGE}
               target="_blank"
