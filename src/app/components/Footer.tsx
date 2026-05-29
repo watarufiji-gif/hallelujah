@@ -58,6 +58,9 @@ export default function Footer() {
               <a href="https://www.instagram.com/chogo_hareruya/" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-white" style={{ color: "rgba(255,255,255,0.4)" }}>
                 Instagram @chogo_hareruya
               </a>
+              <a href="https://www.facebook.com/profile.php?id=100064256194563" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 transition-colors hover:text-white" style={{ color: "rgba(255,255,255,0.4)" }}>
+                Facebook 長後農村かふぇハレルヤ
+              </a>
             </div>
           </div>
         </div>
