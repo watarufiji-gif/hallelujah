@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Script from "next/script";
 import { motion } from "framer-motion";
 import { INSTAGRAM_POST } from "@/data/instagram-posts";
@@ -8,6 +8,7 @@ import { INSTAGRAM_POST } from "@/data/instagram-posts";
 declare global {
   interface Window {
     instgrm?: { Embeds: { process(): void } };
+    FB?: { XFBML: { parse(node?: Element | Document): void } };
   }
 }
 
@@ -33,13 +34,14 @@ function FacebookIcon({ size = 28 }: { size?: number }) {
 
 export default function InstagramEmbedSection() {
   const [postUrl, setPostUrl] = useState(INSTAGRAM_POST);
+  const igColRef = useRef<HTMLDivElement>(null);
+  const [igHeight, setIgHeight] = useState(600);
+  const [isMd, setIsMd] = useState(false);
 
   useEffect(() => {
     fetch("/api/board")
       .then(r => r.ok ? r.json() : null)
-      .then(data => {
-        if (data?.instagram_url) setPostUrl(data.instagram_url);
-      })
+      .then(data => { if (data?.instagram_url) setPostUrl(data.instagram_url); })
       .catch(() => {});
   }, []);
 
@@ -47,24 +49,92 @@ export default function InstagramEmbedSection() {
     if (window.instgrm) window.instgrm.Embeds.process();
   }, [postUrl]);
 
+  useEffect(() => {
+    if (window.FB) window.FB.XFBML.parse();
+  }, []);
+
+  // Instagram列の高さをリアルタイムで監視し、Facebookのクリップ高さに反映
+  useEffect(() => {
+    const el = igColRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => {
+      if (el.offsetHeight > 0) setIgHeight(el.offsetHeight);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // md (768px) 以上かどうかを監視
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handler = () => setIsMd(mq.matches);
+    handler();
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
+  }, []);
+
   return (
     <section id="instagram" className="py-16 sm:py-24" style={{ background: "#ffffff" }}>
+      <div id="fb-root" />
       <Script
         src="https://www.instagram.com/embed.js"
         strategy="lazyOnload"
         onLoad={() => window.instgrm?.Embeds.process()}
       />
+      <Script
+        src="https://connect.facebook.net/ja_JP/sdk.js#xfbml=1&version=v21.0"
+        strategy="lazyOnload"
+        onLoad={() => window.FB?.XFBML?.parse()}
+      />
 
-      <div className="max-w-4xl mx-auto px-6 sm:px-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-start">
+      <div className="max-w-5xl mx-auto px-6 sm:px-10">
 
-          {/* 左: Instagram埋め込み */}
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, ease: EASE }}
-          >
+        {/* 上段: タイトル中央 + SNSアイコン右 */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.7, ease: EASE }}
+          className="relative flex items-center justify-center mb-10"
+        >
+          <div className="text-center">
+            <p className="sec-eyebrow mb-3">Instagram / Facebook</p>
+            <h2 className="font-serif text-4xl sm:text-5xl font-bold" style={{ color: "#1a1a1a" }}>
+              ハレルヤの日常
+            </h2>
+          </div>
+          <div className="absolute right-0 flex items-center gap-3">
+            <a
+              href={IG_PAGE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-60 transition-opacity"
+              style={{ color: "#1a3a2a" }}
+            >
+              <InstagramIcon size={36} />
+            </a>
+            <a
+              href={FB_PAGE}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:opacity-60 transition-opacity"
+              style={{ color: "#1a3a2a" }}
+            >
+              <FacebookIcon size={36} />
+            </a>
+          </div>
+        </motion.div>
+
+        {/* 下段: 左=Instagram / 右=Facebook */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, ease: EASE }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start"
+        >
+          {/* 左: Instagram（高さの基準） */}
+          <div ref={igColRef} className="flex justify-center">
             <blockquote
               key={postUrl}
               className="instagram-media"
@@ -81,50 +151,26 @@ export default function InstagramEmbedSection() {
                 Instagramで見る
               </a>
             </blockquote>
-          </motion.div>
+          </div>
 
-          {/* 右上: タイトル・説明・SNSアイコン */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.7, ease: EASE }}
-            className="flex flex-col gap-6"
+          {/* 右: Facebook（幅いっぱい・Instagramの高さにクリップ） */}
+          <div
+            className="overflow-hidden w-full"
+            style={isMd ? { maxHeight: igHeight } : undefined}
           >
-            <div>
-              <p className="sec-eyebrow mb-4">Instagram / Facebook</p>
-              <div className="flex items-center gap-4 mb-4">
-                <h2 className="font-serif text-4xl sm:text-5xl font-bold" style={{ color: "#1a1a1a" }}>
-                  ハレルヤの日常
-                </h2>
-                <div className="flex items-center gap-3 shrink-0">
-                  <a
-                    href={IG_PAGE}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:opacity-60 transition-opacity"
-                    style={{ color: "#1a3a2a" }}
-                  >
-                    <InstagramIcon size={28} />
-                  </a>
-                  <a
-                    href={FB_PAGE}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="hover:opacity-60 transition-opacity"
-                    style={{ color: "#1a3a2a" }}
-                  >
-                    <FacebookIcon size={28} />
-                  </a>
-                </div>
-              </div>
-              <p className="text-sm leading-relaxed" style={{ color: "#555555" }}>
-                お弁当・馬刺し入荷・旬野菜の直売など、当日情報を発信中。
-              </p>
-            </div>
-          </motion.div>
+            <div
+              className="fb-page"
+              data-href={FB_PAGE}
+              data-tabs="timeline"
+              data-height="800"
+              data-small-header="false"
+              data-adapt-container-width="true"
+              data-hide-cover="false"
+              data-show-facepile="true"
+            />
+          </div>
+        </motion.div>
 
-        </div>
       </div>
     </section>
   );
