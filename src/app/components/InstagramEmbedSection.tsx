@@ -93,33 +93,34 @@ export default function InstagramEmbedSection() {
           >
             <div>
               <p className="sec-eyebrow mb-4">Instagram / Facebook</p>
-              <h2 className="font-serif text-4xl sm:text-5xl font-bold mb-4" style={{ color: "#1a1a1a" }}>
-                ハレルヤの日常
-              </h2>
+              <div className="flex items-center gap-4 mb-4">
+                <h2 className="font-serif text-4xl sm:text-5xl font-bold" style={{ color: "#1a1a1a" }}>
+                  ハレルヤの日常
+                </h2>
+                <div className="flex items-center gap-3 shrink-0">
+                  <a
+                    href={IG_PAGE}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-60 transition-opacity"
+                    style={{ color: "#1a3a2a" }}
+                  >
+                    <InstagramIcon size={28} />
+                  </a>
+                  <a
+                    href={FB_PAGE}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:opacity-60 transition-opacity"
+                    style={{ color: "#1a3a2a" }}
+                  >
+                    <FacebookIcon size={28} />
+                  </a>
+                </div>
+              </div>
               <p className="text-sm leading-relaxed" style={{ color: "#555555" }}>
                 お弁当・馬刺し入荷・旬野菜の直売など、当日情報を発信中。
               </p>
-            </div>
-
-            <div className="flex items-center gap-4">
-              <a
-                href={IG_PAGE}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-60 transition-opacity"
-                style={{ color: "#1a3a2a" }}
-              >
-                <InstagramIcon size={32} />
-              </a>
-              <a
-                href={FB_PAGE}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:opacity-60 transition-opacity"
-                style={{ color: "#1a3a2a" }}
-              >
-                <FacebookIcon size={32} />
-              </a>
             </div>
           </motion.div>
 
