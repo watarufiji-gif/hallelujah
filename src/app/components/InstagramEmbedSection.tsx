@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import Script from "next/script";
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
@@ -18,6 +18,9 @@ const FB_PAGE = "https://www.facebook.com/profile.php?id=100064256194563";
 
 export default function InstagramEmbedSection() {
   const [postUrl, setPostUrl] = useState(INSTAGRAM_POST);
+  const igColRef = useRef<HTMLDivElement>(null);
+  const [igHeight, setIgHeight] = useState(600);
+  const [isMd, setIsMd] = useState(false);
 
   useEffect(() => {
     fetch("/api/board")
@@ -34,6 +37,26 @@ export default function InstagramEmbedSection() {
 
   useEffect(() => {
     if (window.FB) window.FB.XFBML.parse();
+  }, []);
+
+  // Instagram列の高さをリアルタイムで監視
+  useEffect(() => {
+    const el = igColRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => {
+      if (el.offsetHeight > 0) setIgHeight(el.offsetHeight);
+    });
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // 2カラムになるブレークポイント (md = 768px) を監視
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 768px)");
+    const handler = () => setIsMd(mq.matches);
+    handler();
+    mq.addEventListener("change", handler);
+    return () => mq.removeEventListener("change", handler);
   }, []);
 
   return (
@@ -98,8 +121,8 @@ export default function InstagramEmbedSection() {
           transition={{ duration: 0.6, ease: EASE }}
           className="grid grid-cols-1 md:grid-cols-2 gap-6 items-start"
         >
-          {/* 左: Instagram */}
-          <div className="flex justify-center">
+          {/* 左: Instagram（高さの基準） */}
+          <div ref={igColRef} className="flex justify-center">
             <blockquote
               key={postUrl}
               className="instagram-media"
@@ -118,14 +141,17 @@ export default function InstagramEmbedSection() {
             </blockquote>
           </div>
 
-          {/* 右: Facebook Page Plugin */}
-          <div className="flex justify-center overflow-hidden">
+          {/* 右: Facebook（デスクトップではInstagramの高さに揃えてはみ出しを非表示）*/}
+          <div
+            className="flex justify-center overflow-hidden"
+            style={isMd ? { maxHeight: igHeight } : undefined}
+          >
             <div
               className="fb-page"
               data-href={FB_PAGE}
               data-tabs="timeline"
               data-width="500"
-              data-height="600"
+              data-height="800"
               data-small-header="false"
               data-adapt-container-width="true"
               data-hide-cover="false"
